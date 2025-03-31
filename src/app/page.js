@@ -17,7 +17,7 @@ export default function Home() {
       <div className={styles.container}>
         <header className={styles.header}>
         <BlurText
-          text="/* Nombre de la App */"
+          text="Nombre de la App"
           delay={150}
           animateBy="words"
           direction="top"
@@ -36,8 +36,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-
-            {/* Sección de perfiles */}
 
 
             <div className={styles.graphicContainer} style={{flexDirection:"column", gap: "60px"}}>

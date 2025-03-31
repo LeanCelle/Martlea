@@ -1,17 +1,15 @@
-import Link from 'next/link';
-import Image from 'next/image';  // Usamos Image de Next.js para optimización de imágenes
+import Link from 'next/link'; 
 import styles from '@/styles/footer.module.css';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        {/* Logo y nombre de la app */}
         <div className={styles.logoContainer}>
         <Link href="/">
           <img src="/logo.png" alt="Logo" width={120} height={40} />
         </Link>
-          <p className={styles.appName}>/* Nombre de la App */</p>
+          <p className={styles.appName}>Nombre de la App</p>
         </div>
 
         <div className={styles.footerSection}>
@@ -34,7 +32,7 @@ const Footer = () => {
       </div>
       <hr className={styles.hrFooter}></hr>
       <div className={styles.footerBottom}>
-        <p>&copy; 2025 /* Nombre de la App */. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Nombre de la App. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
