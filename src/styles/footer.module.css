@@ -1,0 +1,74 @@
+.footer {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: #f5f5f5;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 2px solid #f5f5f5; /* Línea superior del footer */
+  }
+  
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .appName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ecf0f1;
+    margin-top: 10px;
+  }
+  
+  .footerSection {
+    width: 22%;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .footerSection ul {
+    list-style: none;
+  }
+  
+  .footerTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ecf0f1;
+  }
+  
+  .footerLink {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 0.9rem;
+  }
+  
+  .footerLink:hover {
+    color: #48649c; /* Cambio de color en hover */
+  }
+
+  .hrFooter {
+    margin: 0px auto;
+    background-color: #3e3e3e;
+    border: none;
+    height: 1px;
+    width: 80%;
+  }
+  
+  .footerBottom {
+    margin-top: 40px;
+    font-size: 0.875rem;
+    color: #bdc3c7;
+  }
+  

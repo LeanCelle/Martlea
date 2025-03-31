@@ -1,0 +1,77 @@
+/* src/components/Navbar.module.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #555;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .logoImage {
+    width: 170px;
+  }
+
+  .sections {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .navLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+  }
+  
+  .navLinks li {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .navLinks a {
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .navLinks a:hover {
+    color: #000000;
+  }
+
+  .register {
+    background-color: #48649c;
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+
+  .navLinks .register a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .navLinks .register:hover {
+    background-color: #508cfc;
+    color: #000000;
+    transition: 0.3s;
+  }
+
+  .hr {
+    border: none;
+    height: 1px;
+    background-color: #ebebeb;
+    
+  }
+  

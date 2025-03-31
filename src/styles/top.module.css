@@ -1,0 +1,79 @@
+.container {
+    margin: 60px auto;
+    width: 80%;
+    color: #555;
+  }
+  
+  .title {
+    text-align: center;
+    font-weight: bold;
+    margin: 40px 0px 20px 0px;
+  }
+  
+  .intro {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 100px;
+  }
+  
+  .subtitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px 0px 20px 0px;
+    color: #48649c;
+  }
+
+  .topContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .jobs {
+    width: 100%;
+  }
+  
+  .jobList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .jobItem {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .jobItem h3 {
+    font-size: 1.2rem;
+  }
+  
+  .jobItem p {
+    font-size: 1rem;
+  }
+
+  .hrTop {
+    margin: 20px auto 0px auto;
+    background-color: #ebebeb;
+    border: none;
+    height: 1px;
+    width: 90%;
+  }
+
+  .topContainerGraphic {
+    width: 100%;
+    margin: 60px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .jobsGraphicContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .jobsGraphic {
+    width: 100%;
+  }
