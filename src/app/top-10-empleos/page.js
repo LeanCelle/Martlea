@@ -115,7 +115,6 @@ const TopEmpleos = () => {
   ];
 
   const topCalificadosFive = topCalificados.slice(0, 10);
-  /*const topCalificadosTen = topCalificados.slice(5, 10);*/
 
   return (
     <div className={styles.container}>
