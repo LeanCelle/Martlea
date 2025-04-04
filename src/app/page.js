@@ -4,6 +4,7 @@ import styles from "@/styles/page.module.css";
 import { FiSearch, FiUser } from "react-icons/fi";
 import profiles from "@/data/proofProfiles";
 import BlurText from "@/components/BlurText";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -24,9 +25,10 @@ export default function Home() {
           onAnimationComplete={handleAnimationComplete}
           className="text-2xl mb-8"
         />
-          <p className={styles.welcomeMessage}>
+          <h2 className={styles.welcomeMessage}>
             Base de talentos, donde empresas y candidatos pueden explorar y conectarse de manera rápida y efectiva.
-          </p>
+          </h2>
+          <p className={styles.searchingJob}>¿Estás buscando trabajo? <Link className={styles.createProfile} href="/register">Crear perfil</Link></p>
         </header>
 
         <div className={styles.searchContainer}>
@@ -41,7 +43,7 @@ export default function Home() {
             <div className={styles.graphicContainer} style={{flexDirection:"column", gap: "60px"}}>
               <div className={styles.textGraphic}>
                 <h3>¿Sos reclutador, dueño de una empresa o estás buscando talento para tu equipo?</h3>
-                <p style={{textAlign:"center",}}><b>Encuentra</b> a la <b>persona</b> ideal y haz <b>crecer</b> tu <b>negocio</b> con los mejores profesionales.</p>
+                <p style={{textAlign:"center",}}><b>Encontrá</b> al <b>candidato</b> ideal y hacé <b>crecer</b> tu <b>negocio, empresa o emprendimiento</b> con los mejores empleados.</p>
               </div>
               <div className={styles.profilesGrid}>
               {profiles.map((profile) => (

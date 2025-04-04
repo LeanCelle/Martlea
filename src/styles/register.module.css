@@ -1,0 +1,296 @@
+/* styles/register.module.css */
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #48649c;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .fullWidth {
+    grid-column: span 2;
+  }
+  .full {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .full input {
+    flex: 1;
+  }
+  
+  .input,
+  .select,
+  .textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 0px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s;
+  }
+  
+  .input:focus,
+  .select:focus,
+  .textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  .label {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: block;
+    color: #34495e;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button {
+    grid-column: span 2;
+    background-color: #48649c;
+    color: #fff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .button:hover {
+    background-color: #508cfc;
+  }
+  
+  .dynamicInputs {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .dynamicList {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .dynamicItem {
+    background: #ecf0f1;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    margin-top: 0.3rem;
+    display: inline-block;
+  }
+
+  .photoUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 2;
+    margin-bottom: 1rem;
+  }
+  
+  .fileInput {
+    display: none;
+  }
+  
+  .photoLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    color: #666;
+  }
+  
+  .placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: #ecf0f1;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+  
+  .placeholder:hover {
+    background-color: #dce3e8;
+  }
+  
+  .plus {
+    font-size: 2.5rem;
+    color: #7f8c8d;
+    position: absolute;
+  }
+  
+  .preview {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+  }
+
+  .cvUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    grid-column: span 2;
+    gap: 0.5rem;
+  }
+  
+  .cvLabel {
+    padding: 0.75rem 1.5rem;
+    background-color: #48649c;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .cvLabel:hover {
+    background-color: #508cfc;
+  }
+  
+  .cvFileContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .cvFileName {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  .deleteCvBtn {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s;
+  }
+  
+  .deleteCvBtn:hover {
+    background-color: #c0392b;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .idiomaNivelRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .deleteBtn {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .deleteBtn:hover {
+    background-color: #c53030;
+  }
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .information h2 {
+    margin: 30px 0px 15px 0px;
+  }
+
+  .languages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .buttonSecondary {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 25%;
+    cursor: pointer;
+  }
+
+  .linkContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.removeButton {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s;
+}
+  
+  .removeButton:hover {
+    background-color: #c0392b;
+  }
+
+  
+  
+  
+  
+  

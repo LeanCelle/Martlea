@@ -17,10 +17,10 @@ const Navbar = () => {
             <Link href="/top-10-empleos">Top 10 empleos</Link>
             </li>
             <li>
-            <Link href="/faq">F.A.Q</Link>
+            <Link href="/contact">Instructivo</Link>
             </li>
             <li>
-            <Link href="/contact">Contacto</Link>
+            <Link href="/faq">F.A.Q</Link>
             </li>
             <li>
             <Link href="/login">Iniciar sesión</Link>

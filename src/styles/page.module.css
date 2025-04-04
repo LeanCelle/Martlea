@@ -25,12 +25,31 @@
 }
 
 .welcomeMessage {
-  font-size: 1.2rem;
+  font-size: 19px;
   color: #555;
-  margin-bottom: 30px;
+  font-weight: normal;
+  margin-bottom: 20px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.searchingJob {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 15px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.createProfile {
+  color: #48649c;
+}
+
+.createProfile:hover {
+  text-decoration: underline;
+  text-decoration-color: #48649c;
 }
 
 .searchContainer {

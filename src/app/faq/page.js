@@ -17,7 +17,7 @@ const Faq = () => {
     },
     {
       question: '¿Es gratuito registrarme en la plataforma?',
-      answer: 'Sí, registrarse como candidato en nuestra plataforma es completamente gratuito. Puedes acceder a todas las funciones básicas para destacar tu perfil y postularte a oportunidades laborales.'
+      answer: 'Sí, registrarse como candidato en nuestra plataforma es completamente gratuito.'
     },
     {
       question: '¿Cómo puedo destacar mis habilidades en la plataforma?',
@@ -29,7 +29,7 @@ const Faq = () => {
     },
     {
       question: '¿Cómo sabré si las empresas están interesadas en mi perfil?',
-      answer: 'Si una empresa está interesada en tu perfil, te contactará directamente a través de la plataforma para ofrecerte oportunidades. También recibirás notificaciones cuando se visualicen o se interesen por tu perfil.'
+      answer: 'Si una empresa está interesada en tu perfil, te contactará directamente a través de tus datos de contactos previamente completados. Aségurate que tus datos esten los correctos.'
     },
     {
       question: '¿Cómo puedo actualizar mi perfil?',
@@ -37,11 +37,11 @@ const Faq = () => {
     },
     {
       question: '¿Puedo agregar una foto de perfil?',
-      answer: 'Sí, te recomendamos agregar una foto profesional para que tu perfil sea más atractivo y personal, lo que puede aumentar tus oportunidades de ser contactado por empresas.'
+      answer: 'Sí, te recomendamos agregar una foto profesional para que tu perfil sea más atractivo y personal, lo que puede aumentar tus oportunidades de ser contactado.'
     },
     {
       question: '¿Cómo puedo contactar con las empresas?',
-      answer: 'Las empresas pueden contactarte directamente a través de la plataforma. Sin embargo, no tendrás la opción de contactar a las empresas por iniciativa propia; es un sistema basado en la visibilidad y el interés mutuo.'
+      answer: 'No tendrás la opción de contactar a las empresas por iniciativa propia; es un sistema basado en la visibilidad y el interés mutuo.'
     }
   ];
 

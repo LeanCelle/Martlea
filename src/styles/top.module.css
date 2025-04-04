@@ -41,7 +41,7 @@
   
   .jobItem {
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .jobItem h3 {
@@ -62,18 +62,52 @@
 
   .topContainerGraphic {
     width: 100%;
-    margin: 60px 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
   .jobsGraphicContainer {
+    margin: auto;
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 15px 0px 35px 0px;
   }
 
   .jobsGraphic {
-    width: 100%;
+    width: 90%;
   }
+
+
+  .optionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 50px 0px;
+  }
+  .optionsContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .optionBox {
+    border-left: 4px solid #48649c;
+    padding: 1rem;
+    border-radius: 12px;
+    flex: 1;
+  }
+  
+  .optionLink {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #48649c;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .optionLink:hover {
+    color: #2f4d7c;
+  }
+  
