@@ -9,11 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@affinda/affinda": "^7.4.0",
     "@react-spring/web": "^9.7.5",
+    "@supabase/supabase-js": "^2.49.4",
+    "axios": "^1.8.4",
+    "country-state-city": "^3.2.1",
+    "firebase": "^11.6.0",
+    "formidable": "^3.5.2",
+    "framer-motion": "^12.6.3",
+    "mammoth": "^1.9.0",
     "next": "15.2.4",
+    "pdf-parse": "^1.1.1",
     "react": "^18.3.1",
     "react-beautiful-dnd": "^13.1.1",
+    "react-country-region-selector": "^4.0.2",
     "react-dom": "^18.3.1",
+    "react-firebase-hooks": "^5.1.1",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {

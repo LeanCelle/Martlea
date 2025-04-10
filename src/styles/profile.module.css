@@ -150,7 +150,7 @@
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #3498db;
+    border: 2px solid #48649c;
   }
 
   .cvUpload {
@@ -228,6 +228,13 @@
     gap: 8px;
     margin-bottom: 10px;
   }
+
+  .nameLastname {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
   
   .deleteBtn {
     background-color: #e53e3e;
@@ -287,6 +294,13 @@
   
   .removeButton:hover {
     background-color: #c0392b;
+  }
+
+  .errorMessage {
+    color: #ff0000;
+    padding: 5px 0px;
+    border-radius: 5px;
+    text-align: center;
   }
 
   

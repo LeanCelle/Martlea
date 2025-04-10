@@ -104,7 +104,7 @@ const TopEmpleos = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Ranking de Empleos <span style={{color:"#48649c"}}>más demandados</span></h1>
       <p className={styles.intro}>
-      En esta sección, presentamos una lista de los 10 empleos más solicitados, tanto calificados como no calificados, basándonos en la demanda actual del mercado laboral y las habilidades requeridas para desempeñarse con éxito en cada uno de estos roles.
+      Presentamos una lista de los 10 empleos más solicitados, tanto calificados como no calificados, basándonos en la demanda actual del mercado laboral y las habilidades requeridas para desempeñarse con éxito en cada uno de estos roles.
       </p>
 
        <div className={styles.optionsContainer}>

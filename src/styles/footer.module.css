@@ -48,6 +48,9 @@
   
   .footerLink {
     color: #ecf0f1;
+    background-color: #1a1a1a;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     margin-bottom: 8px;
     display: block;

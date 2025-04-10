@@ -45,6 +45,10 @@
 
 .createProfile {
   color: #48649c;
+  background-color: white;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
 }
 
 .createProfile:hover {

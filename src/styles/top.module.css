@@ -8,6 +8,7 @@
     text-align: center;
     font-weight: bold;
     margin: 40px 0px 20px 0px;
+    color: #333;
   }
   
   .intro {
@@ -79,19 +80,17 @@
     width: 90%;
   }
 
-
   .optionsContainer {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 50px 0px;
-  }
-  .optionsContainer {
     flex-direction: row;
     justify-content: space-between;
+    margin: 50px 0px;
   }
   
   .optionBox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     border-left: 4px solid #48649c;
     padding: 1rem;
     border-radius: 12px;
