@@ -52,7 +52,7 @@ const AllProfilesFound = () => {
 
   return (
     <div className={styles.resultsContainer}>
-      <h1>Resultados para: "{query}"</h1>
+      <h1>Resultados para: &quot;{query}&quot;</h1>
 
       {loading ? (
         <Loading />
