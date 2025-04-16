@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "@/styles/page.module.css";
-import { FiSearch, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import profiles from "@/data/proofProfiles";
 import BlurText from "@/components/BlurText";
 import RegisterModal from "@/components/RegisterModal";
