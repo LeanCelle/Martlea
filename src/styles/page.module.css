@@ -35,7 +35,7 @@
 }
 
 .searchingJob {
-  font-size: 17px;
+  font-size: 18px;
   color: #555;
   margin-bottom: 15px;
   max-width: 600px;
@@ -47,57 +47,13 @@
   color: #48649c;
   background-color: white;
   border: none;
-  font-size: 17px;
+  font-size: 18px;
   cursor: pointer;
 }
 
 .createProfile:hover {
   text-decoration: underline;
   text-decoration-color: #48649c;
-}
-
-.searchContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.searchBar {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  border-top-right-radius: 0%;
-  border-bottom-right-radius: 0%;
-  width: 80%;
-  box-sizing: border-box;
-}
-
-.searchButton {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-  background-color: #48649c;
-  border-radius: 5px;
-  border-top-left-radius: 0%;
-  border-bottom-left-radius: 0%;
-  border: 1px solid #ccc;
-  border-left: none;
-  cursor: pointer;
-  padding: 9px;
-}
-
-.searchButton:hover {
-  background-color: #508cfc;
-  transition: 0.3s;
-}
-
-.searchBar::placeholder {
-  color: #888;
 }
 
 /* Graphic */

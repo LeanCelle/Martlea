@@ -26,7 +26,7 @@ export default function VerPerfil() {
     experiencia: 0,
     nivelEducativo: "",
     tipoEmpleo: "",
-    links: "",
+    links: [],
     country: "",
     region: "",
   });
@@ -126,6 +126,29 @@ export default function VerPerfil() {
     setFormData((prev) => ({
       ...prev,
       idiomas: [...prev.idiomas, { idioma: "", nivel: "" }],
+    }));
+  };
+
+  const handleLinkChange = (index, value) => {
+    const updatedLinks = [...formData.links];
+    updatedLinks[index] = value;
+    setFormData((prev) => ({
+      ...prev,
+      links: updatedLinks
+    }));
+  };
+
+  const removeLink = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      links: prev.links.filter((_, i) => i !== index)
+    }));
+  };
+
+  const addLink = () => {
+    setFormData((prev) => ({
+      ...prev,
+      links: [...prev.links, ""]
     }));
   };
 
@@ -472,7 +495,9 @@ export default function VerPerfil() {
                   <option value="Tiempo Completo">Tiempo completo</option>
                   <option value="Medio Tiempo">Medio tiempo</option>
                   <option value="Freelance">Freelance</option>
-                  <option value="Tiempo completo, Medio tiempo o Freelance">Todos (Tiempo completo, Medio tiempo o Freelance)</option>
+                  <option value="Tiempo completo, Medio tiempo o Freelance">
+                    Todos (Tiempo completo, Medio tiempo o Freelance)
+                  </option>
                 </select>
               ) : (
                 <p>{formData.tipoEmpleo}</p>
@@ -524,7 +549,6 @@ export default function VerPerfil() {
                   }
                   className={styles.input}
                 >
-                  <option value="">Nivel educativo alcanzado</option>
                   <option value="Secundaria">Secundaria</option>
                   <option value="Terciario">Terciario</option>
                   <option value="Universitario">Universitario</option>
@@ -626,15 +650,46 @@ export default function VerPerfil() {
             <div className={styles.labelContainer}>
               <label>Links:</label>
               {editMode ? (
-                <input
-                  type="text"
-                  name="links"
-                  value={formData.links}
-                  onChange={handleChange}
-                  className={styles.input}
-                />
+                <>
+                  {Array.isArray(formData.links) &&
+                    formData.links.map((item, index) => (
+                      <div key={index} className={styles.idiomaNivelRow}>
+                        <input
+                          type="text"
+                          name={`link-${index}`}
+                          value={item}
+                          onChange={(e) =>
+                            handleLinkChange(index, e.target.value)
+                          }
+                          placeholder="Link (Portfolio, LinkedIn, GitHub...)"
+                          className={`${styles.input} ${styles.full}`}
+                        />
+
+                        <button
+                          type="button"
+                          onClick={() => removeLink(index)}
+                          className={styles.deleteBtn}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+
+                  <button
+                    type="button"
+                    onClick={addLink}
+                    className={styles.buttonSecondary}
+                  >
+                    + Añadir link
+                  </button>
+                </>
               ) : (
-                <p>{formData.links}</p>
+                <ul>
+                  {Array.isArray(formData.links) &&
+                    formData.links.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                </ul>
               )}
             </div>
           </div>

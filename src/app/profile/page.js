@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 
 const Profile = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -29,7 +31,37 @@ const Profile = () => {
     links: [""],
     country: "",
     region: "",
+    categoriaEmpleo: "",
+    puestoEmpleo: "",
   });
+
+  const empleosNoCalificados = [
+    "Peón de obra",
+    "Personal de limpieza",
+    "Mantenimiento",
+    "Cadete o mensajero",
+    "Mozo/a",
+    "Operario",
+    "Sereno",
+    "Vendedor en comercio",
+    "Auxiliar de cocina",
+    "Repositor",
+    "Otros",
+  ];
+
+  const empleosCalificados = [
+    "Ciencias económicas",
+    "Personal de tecnología",
+    "Ingeniero",
+    "Técnicos de oficios (electricistas, gasistas, plomeros, etc.)",
+    "Personal de salud",
+    "Recursos humanos",
+    "Abogado/a",
+    "Técnico mecánico",
+    "Arquitecto/a",
+    "Marketing",
+    "Otros",
+  ];
 
   const router = useRouter();
 
@@ -93,6 +125,8 @@ const Profile = () => {
       "tipoEmpleo",
       "country",
       "region",
+      "categoriaEmpleo",
+      "puestoEmpleo",
     ];
 
     for (let campo of camposObligatorios) {
@@ -116,7 +150,9 @@ const Profile = () => {
     for (let i = 0; i < formData.idiomas.length; i++) {
       const idioma = formData.idiomas[i];
       if (!idioma.idioma || !idioma.nivel) {
-        setErrorMessage(`Completa todos los campos del idioma #${i + 1}`);
+        setErrorMessage(
+          `Completa todos los campos del idioma #${i + 1} o eliminálo`
+        );
         return false;
       }
     }
@@ -178,9 +214,8 @@ const Profile = () => {
 
     if (!validarFormulario()) return;
 
-    console.log("Enviando formulario...");
-
-    // Continuá con la lógica de subida de archivos y guardado en Supabase
+    setIsSubmitting(true);
+    setSubmitError(false);
 
     try {
       if (formData.foto) {
@@ -240,12 +275,20 @@ const Profile = () => {
           descripcion: formData.descripcion,
           fecha_nacimiento: formData.fechaNacimiento,
           genero: formData.genero,
-          idiomas: formData.idiomas,
+          idiomas:
+            formData.idiomas.length > 0
+              ? formData.idiomas
+              : [{ idioma: "(Vacío)", nivel: "(Vacío)" }],
           habilidades: formData.habilidades,
           experiencia: parseInt(formData.experiencia),
           nivel_educativo: formData.nivelEducativo,
           tipo_empleo: formData.tipoEmpleo,
-          links: formData.links,
+          categoria_Empleo: formData.categoriaEmpleo,
+          puesto_Empleo: formData.puestoEmpleo,
+          links:
+            formData.links.length > 0
+              ? formData.links.map((l) => (l.trim() === "" ? "(Vacío)" : l))
+              : ["(Vacío)"],
           country: formData.country,
           region: formData.region,
         },
@@ -253,10 +296,13 @@ const Profile = () => {
 
       if (insertError) throw insertError;
 
-      router.push("/ver-perfil"); // Redirigir al perfil
+      router.push("/ver-perfil");
     } catch (err) {
       console.error("Error al crear el perfil:", err.message);
+      setSubmitError(true);
       alert("Hubo un error. Revisá la consola.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -430,8 +476,55 @@ const Profile = () => {
             <option value="Tiempo Completo">Tiempo completo</option>
             <option value="Medio Tiempo">Medio tiempo</option>
             <option value="Freelance">Freelance</option>
-            <option value="Tiempo completo, Medio tiempo o Freelance">Todos (Tiempo completo, Medio tiempo o Freelance)</option>
+            <option value="Tiempo completo, Medio tiempo o Freelance">
+              Todos (Tiempo completo, Medio tiempo o Freelance)
+            </option>
           </select>
+        </div>
+
+        {/* --- SEARCHING FOR --- */}
+        <div className={styles.searchingFor}>
+          <h2 className={styles.sectionTitle}>
+            ¿Qué tipo de empleo estás buscando?
+          </h2>
+
+          {/* Tipo de empleo: categoría */}
+          <div className={styles.formGroup}>
+            <select
+              id="categoriaEmpleo"
+              name="categoriaEmpleo"
+              value={formData.categoriaEmpleo}
+              className={styles.select}
+              onChange={handleInputChange}
+            >
+              <option value="">Seleccioná una categoría</option>
+              <option value="Calificado">Calificado</option>
+              <option value="No Calificado">No calificado</option>
+            </select>
+          </div>
+
+          {/* Tipo de empleo: puesto específico */}
+          {formData.categoriaEmpleo && (
+            <div className={styles.formGroup}>
+              <select
+                id="puestoEmpleo"
+                name="puestoEmpleo"
+                value={formData.puestoEmpleo}
+                className={styles.select}
+                onChange={handleInputChange}
+              >
+                <option value="">Seleccioná un puesto</option>
+                {(formData.categoriaEmpleo === "No Calificado"
+                  ? empleosNoCalificados
+                  : empleosCalificados
+                ).map((empleo, index) => (
+                  <option key={index} value={empleo}>
+                    {empleo}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         {/* --- EDUCACIÓN --- */}
@@ -449,7 +542,6 @@ const Profile = () => {
             <option value="Ninguno">Ninguno</option>
           </select>
 
-          {/* Solo mostrar el campo "Título educativo" si el nivel educativo no es "Ninguno" */}
           {formData.nivelEducativo !== "Ninguno" && (
             <input
               name="tituloEducativo"
@@ -552,8 +644,12 @@ const Profile = () => {
         )}
 
         {/* --- SUBMIT --- */}
-        <button type="submit" className={styles.button}>
-          Crear Perfil
+        <button type="submit" className={styles.button} disabled={isSubmitting}>
+          {isSubmitting
+            ? "Creando perfil..."
+            : submitError
+            ? "Hubo un error"
+            : "Crear perfil"}
         </button>
       </form>
     </div>

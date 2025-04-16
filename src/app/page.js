@@ -6,6 +6,7 @@ import { FiSearch, FiUser } from "react-icons/fi";
 import profiles from "@/data/proofProfiles";
 import BlurText from "@/components/BlurText";
 import RegisterModal from "@/components/RegisterModal";
+import SearchBar from "@/components/SearchBar";
 
 
 export default function Home() {
@@ -40,16 +41,7 @@ export default function Home() {
             {showRegisterModal && <RegisterModal onClose={() => setShowRegisterModal(false)} />}
           </header>
 
-          <div className={styles.searchContainer}>
-            <input
-              type="text"
-              placeholder="Buscar a tu mejor candidato..."
-              className={styles.searchBar}
-            />
-            <button className={styles.searchButton}>
-              <FiSearch size={20} color="white" />
-            </button>
-          </div>
+          <SearchBar/>
         </div>
 
         <div

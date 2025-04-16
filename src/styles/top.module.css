@@ -48,6 +48,10 @@
   .jobItem h3 {
     font-size: 1.2rem;
   }
+
+  .optionBox h3 {
+    font-size: 24px;
+  }
   
   .jobItem p {
     font-size: 1rem;

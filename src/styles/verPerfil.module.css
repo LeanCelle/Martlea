@@ -34,7 +34,7 @@
     width: 100%;
     align-items: center;
     gap: 20px;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid #ebebeb;
     border-bottom: none;
   }
 
@@ -144,14 +144,14 @@
 
   .contactContainer {
     width: 50%;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid #ebebeb;
     border-bottom: none;
     padding: 40px;
   }
 
   .jobContainer {
     width: 50%;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid #ebebeb;
     border-left: none;
     border-bottom: none;
     padding: 40px;
@@ -164,13 +164,13 @@
 
   .studyContainer {
     width: 50%;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid #ebebeb;
     padding: 40px;
   }
 
   .othersContainer {
     width: 50%;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid #ebebeb;
     border-left: none;
     padding: 40px;
   }
@@ -275,6 +275,7 @@
   }
 
   .idiomaNivelRow {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;

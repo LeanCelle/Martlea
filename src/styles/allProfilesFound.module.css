@@ -1,0 +1,137 @@
+.resultsContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    min-height: 80vh;
+    margin: 0 auto;
+  }
+  
+  .resultsContainer h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .profileList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: left;
+  }
+  
+  .profileCard {
+    width: 32%;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profileCard:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .fotoContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .fotoContainer img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 3px;
+  }
+  
+  .fotoContainer h3 {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .fotoContainer h4 {
+    font-size: 19.2px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .fotoContainer h5 {
+    font-size: 16px;
+    color: #48649c;
+  }
+
+  .descritionContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .profileCard h6 {
+    font-weight: normal;
+    font-size: 16px;
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .profileCard p {
+    margin: 0px;
+    color: #555;
+    text-align: left;
+  }
+
+  .cvContainer {
+    height: 100%;
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .seeCv {
+    padding: 0.6rem 1.2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #48649c;
+    text-decoration: underline;
+  }
+
+  .contactContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ProfileEmailContainer {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .goToMail {
+    text-decoration: none;
+    background-color: #48649c;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .goToMail:hover {
+    background-color: #508cfc;
+  }
+  

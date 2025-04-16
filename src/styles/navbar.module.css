@@ -7,6 +7,7 @@
     align-items: center;
     padding: 1rem 2rem;
     color: #555;
+    border-bottom: 1px solid #ebebeb;
   }
   
   .logo {
@@ -64,12 +65,6 @@
     color: white;
     background-color: #508cfc;
     transition: 0.3s;
-  }
-
-  .hr {
-    border: none;
-    height: 1px;
-    background-color: #ebebeb;
   }
 
   .profileWrapper {

@@ -261,6 +261,17 @@
     margin: 30px 0px 15px 0px;
   }
 
+  .searchingFor {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .searchingFor h2 {
+    margin: 30px 0px 15px 0px;
+  }
+
   .languages {
     display: flex;
     flex-direction: column;

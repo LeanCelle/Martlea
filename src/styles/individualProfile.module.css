@@ -1,0 +1,315 @@
+.perfilContainer {
+    width: 100%;
+      margin: 0 auto;
+      border-radius: 12px;
+      max-width: 1250px;
+      padding: 2rem;
+      min-height: 100vh;
+      color: #333;
+    }
+  
+    .title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #48649c;
+    }
+  
+    .sectionTitle {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0px 0px 15px 0px;
+      color: #48649c;
+    }
+    
+    .perfilForm {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .labelImgNameContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid #ebebeb;
+      border-bottom: none;
+    }
+  
+    .labelImgNameContainer .labelContainer {
+      margin: 0px;
+    }
+  
+    .labelNameContainer .labelContainer h2 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+  
+    .labelImgNameContainer img {
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #48649c;
+      width: 120px;
+      height: 120px;
+    }
+  
+    .locationIcon {
+      color: #000000;
+    }
+  
+    .labelImgNameRoleContainer {
+      width: 70%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+  
+    .cvAllContainer {
+      width: 30%;
+      padding: 20px;
+    }
+  
+    .labelContainer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 3px;
+      margin-bottom: 15px;
+    }
+    
+    .labelContainer label {
+      font-weight: bold;
+      font-size: 19.2px;
+      display: block;
+    }
+    
+    .labelContainer p {
+      font-size: 16px;
+    }
+  
+    .labelContainer ul {
+      list-style: none;
+    }
+    
+    .input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 1rem;
+    }
+  
+    .textarea {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 1rem;
+    }
+    
+    .input:focus {
+      border-color: #3b82f6;
+      outline: none;
+    }
+  
+    .cvContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    
+    .cvContainer a {
+      padding: 0.75rem 1.5rem;
+      background-color: #48649c;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+  
+    .cvContainer a:hover {
+      background-color: #508cfc;
+    }
+  
+    .contactAndJobContainer {
+      display: flex;
+      width: 100%;
+    }
+  
+    .contactContainer {
+      width: 50%;
+      border: 1px solid #ebebeb;
+      border-bottom: none;
+      padding: 40px;
+    }
+  
+    .jobContainer {
+      width: 50%;
+      border: 1px solid #ebebeb;
+      border-left: none;
+      border-bottom: none;
+      padding: 40px;
+    }
+  
+    .studyAndOthersContainer {
+      display: flex;
+      width: 100%;
+    }
+  
+    .studyContainer {
+      width: 50%;
+      border: 1px solid #ebebeb;
+      padding: 40px;
+    }
+  
+    .othersContainer {
+      width: 50%;
+      border: 1px solid #ebebeb;
+      border-left: none;
+      padding: 40px;
+    }
+    
+    .idiomasGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .idiomaRow {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .deleteBtn {
+      background-color: #f87171;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    .addBtn {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #10b981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    
+    .fotoSection,
+    .cvSection {
+      grid-column: span 2;
+    }
+    
+    .fotoSection img {
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  
+    .editableImage {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  
+    .editIcon {
+      position: absolute;
+      margin: 10px;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+  
+    .cvLinkEditable {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+  
+    .editIconCv {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .cvSection a {
+      margin-top: 0.5rem;
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    
+    .buttons {
+      grid-column: span 2;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .buttons button {
+      padding: 0.75rem 1.5rem;
+      background-color: #48649c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .buttons button:hover {
+      background-color: #508cfc;;
+    }
+  
+    .idiomaNivelRow {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+  
+    .deleteBtn {
+      background-color: #e53e3e;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .deleteBtn:hover {
+      background-color: #c53030;
+    }
+  
+    .buttonSecondary {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .labelContainer a {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+    
+  
+    
+    

@@ -2,11 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/app/utils/supabaseClient";
 import styles from "@/styles/navbar.module.css";
 import { FiUser } from "react-icons/fi";
 import dynamic from "next/dynamic";
+import SearchBar from "./SearchBar";
 
 const RegisterModal = dynamic(() => import("@/components/RegisterModal"), {
   ssr: false,
@@ -22,6 +23,8 @@ const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const dropdownRef = useRef(null);
   const router = useRouter();
+  const pathname = usePathname();
+  const showSearchBar = pathname !== "/";
 
   useEffect(() => {
     const syncSession = async () => {
@@ -90,8 +93,7 @@ const Navbar = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSignOut = async () => {
@@ -99,7 +101,7 @@ const Navbar = () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-  
+
       setDropdownOpen(false);
       setUser(null);
       router.push("/"); // Redirige al inicio
@@ -108,7 +110,6 @@ const Navbar = () => {
       alert("Ocurrió un error al cerrar sesión. Intentá de nuevo.");
     }
   };
-  
 
   return (
     <>
@@ -118,6 +119,8 @@ const Navbar = () => {
             <img src="/logo.png" alt="Logo" className={styles.logoImage} />
           </Link>
         </div>
+        {showSearchBar && <SearchBar />}{" "}
+        {/* 👈 solo muestra si no está en "/" */}
         <div className={styles.sections}>
           <ul className={styles.navLinks}>
             <li>
@@ -182,7 +185,6 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <hr className={styles.hr} />
       {showRegisterModal && (
         <RegisterModal onClose={() => setShowRegisterModal(false)} />
       )}
