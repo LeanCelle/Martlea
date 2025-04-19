@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/app/utils/supabaseClient";
 import styles from "@/styles/individualProfile.module.css";
 import Loading from "@/components/Loading";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
 import { useParams } from "next/navigation";
 
 const IndividualProfile = () => {
@@ -91,11 +91,15 @@ const IndividualProfile = () => {
         <div className={styles.labelImgNameContainer}>
           <div className={styles.labelImgNameRoleContainer}>
             <div className={styles.labelImgContainer}>
-              <img
-                src={formData.foto_url}
-                alt="Foto de perfil"
-                className={styles.profileImage}
-              />
+              {formData.foto_url ? (
+                <img
+                  src={formData.foto_url}
+                  alt={`${formData.nombre} ${formData.apellido}`}
+                  className={styles.profileImage}
+                />
+              ) : (
+                <FaUserCircle className={styles.defaultProfileIcon} />
+              )}
             </div>
 
             <div className={styles.labelNameContainer}>
@@ -117,13 +121,17 @@ const IndividualProfile = () => {
 
           <div className={styles.cvAllContainer}>
             <div className={styles.cvContainer}>
-              <a
-                href={formData.cv_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver CV
-              </a>
+              {formData.cv_url ? (
+                <a
+                  href={formData.cv_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver CV
+                </a>
+              ) : (
+                <p className={styles.notAvailableText}>CV no disponible</p>
+              )}
             </div>
           </div>
         </div>

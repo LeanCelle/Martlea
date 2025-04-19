@@ -55,8 +55,16 @@
     height: 120px;
   }
 
+  .defaultProfileIcon {
+    width: 120px;
+    height: 120px;
+    color: #c6c6c6;
+    border-radius: 50%;
+    border: 2px solid #48649c;
+  }
+
   .locationIcon {
-    color: #000000;
+    color: #333;
   }
 
   .labelImgNameRoleContainer {
@@ -244,6 +252,25 @@
     width: 20px;
     height: 20px;
   }
+
+  .noCvContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #777;
+    cursor: pointer;
+  }
+  
+  .noCvIcon {
+    font-size: 24px;
+    color: #aaa;
+  }
+  
+  .noCvText {
+    font-size: 14px;
+    font-style: italic;
+  }
+  
   
   .cvSection a {
     margin-top: 0.5rem;

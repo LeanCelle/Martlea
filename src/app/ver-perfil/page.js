@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/app/utils/supabaseClient";
 import styles from "@/styles/verPerfil.module.css";
 import Loading from "@/components/Loading";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaUserCircle, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
 export default function VerPerfil() {
@@ -26,6 +25,8 @@ export default function VerPerfil() {
     experiencia: 0,
     nivelEducativo: "",
     tipoEmpleo: "",
+    categoriaEmpleo: "",
+    puestoEmpleo: "",
     links: [],
     country: "",
     region: "",
@@ -36,6 +37,34 @@ export default function VerPerfil() {
   const [editFoto, setEditFoto] = useState(false);
   const [editCV, setEditCV] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+
+  const empleosNoCalificados = [
+    "Peón de obra",
+    "Personal de limpieza",
+    "Mantenimiento",
+    "Cadete o mensajero",
+    "Mozo/a",
+    "Operario",
+    "Sereno",
+    "Vendedor en comercio",
+    "Auxiliar de cocina",
+    "Repositor",
+    "Otros",
+  ];
+
+  const empleosCalificados = [
+    "Ciencias económicas",
+    "Personal de tecnología",
+    "Ingeniero",
+    "Técnicos de oficios (electricistas, gasistas, plomeros, etc.)",
+    "Personal de salud",
+    "Recursos humanos",
+    "Abogado/a",
+    "Técnico mecánico",
+    "Arquitecto/a",
+    "Marketing",
+    "Otros",
+  ];
 
   const fetchData = async () => {
     const {
@@ -65,6 +94,8 @@ export default function VerPerfil() {
         fechaNacimiento: data.fecha_nacimiento || "",
         nivelEducativo: data.nivel_educativo || "",
         tipoEmpleo: data.tipo_empleo || "",
+        categoriaEmpleo: data.categoria_Empleo || "",
+        puestoEmpleo: data.puesto_Empleo || "",
         foto_url: data.foto_url,
         cv_url: data.cv_url,
       });
@@ -134,21 +165,21 @@ export default function VerPerfil() {
     updatedLinks[index] = value;
     setFormData((prev) => ({
       ...prev,
-      links: updatedLinks
+      links: updatedLinks,
     }));
   };
 
   const removeLink = (index) => {
     setFormData((prev) => ({
       ...prev,
-      links: prev.links.filter((_, i) => i !== index)
+      links: prev.links.filter((_, i) => i !== index),
     }));
   };
 
   const addLink = () => {
     setFormData((prev) => ({
       ...prev,
-      links: [...prev.links, ""]
+      links: [...prev.links, ""],
     }));
   };
 
@@ -213,6 +244,8 @@ export default function VerPerfil() {
         experiencia: parseInt(formData.experiencia),
         nivel_educativo: formData.nivelEducativo,
         tipo_empleo: formData.tipoEmpleo,
+        categoria_Empleo: formData.categoriaEmpleo,
+        puesto_Empleo: formData.puestoEmpleo,
         links: formData.links,
         country: formData.country,
         region: formData.region,
@@ -258,7 +291,7 @@ export default function VerPerfil() {
                   />
                 ) : (
                   <>
-                    {formData.foto_url && (
+                    {formData.foto_url ? (
                       <div className={styles.editableImage}>
                         <img
                           src={formData.foto_url}
@@ -270,17 +303,22 @@ export default function VerPerfil() {
                           onClick={() => setEditFoto(true)}
                         />
                       </div>
+                    ) : (
+                      <FaUserCircle
+                        className={styles.defaultProfileIcon}
+                        onClick={() => setEditFoto(true)}
+                      />
                     )}
                   </>
                 )
+              ) : formData.foto_url ? (
+                <img
+                  src={formData.foto_url}
+                  alt="Foto de perfil"
+                  className={styles.profileImage}
+                />
               ) : (
-                formData.foto_url && (
-                  <img
-                    src={formData.foto_url}
-                    alt="Foto de perfil"
-                    className={styles.profileImage}
-                  />
-                )
+                <FaUserCircle className={styles.defaultProfileIcon} />
               )}
             </div>
 
@@ -363,33 +401,44 @@ export default function VerPerfil() {
                     onChange={handleChange}
                     className={styles.input}
                   />
+                ) : formData.cv_url ? (
+                  <div className={styles.cvLinkEditable}>
+                    <a
+                      href={formData.cv_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Ver CV
+                    </a>
+                    <FaEdit
+                      className={styles.editIconCv}
+                      onClick={() => setEditCV(true)}
+                    />
+                  </div>
                 ) : (
-                  formData.cv_url && (
-                    <div className={styles.cvLinkEditable}>
-                      <a
-                        href={formData.cv_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Ver CV
-                      </a>
-                      <FaEdit
-                        className={styles.editIconCv}
-                        onClick={() => setEditCV(true)}
-                      />
-                    </div>
-                  )
-                )
-              ) : (
-                formData.cv_url && (
-                  <a
-                    href={formData.cv_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <div
+                    className={styles.noCvContainer}
+                    onClick={() => setEditCV(true)}
                   >
-                    Ver CV
-                  </a>
+                    <FaFileAlt className={styles.noCvIcon} />
+                    <span className={styles.noCvText}>
+                      Todavía no subiste tu CV
+                    </span>
+                  </div>
                 )
+              ) : formData.cv_url ? (
+                <a
+                  href={formData.cv_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver CV
+                </a>
+              ) : (
+                <div className={styles.noCvContainer}>
+                  <FaFileAlt className={styles.noCvIcon} />
+                  <span className={styles.noCvText}>CV no disponible</span>
+                </div>
               )}
             </div>
           </div>
@@ -481,6 +530,59 @@ export default function VerPerfil() {
                 <p>{formData.experiencia} años</p>
               )}
             </div>
+
+            <div className={styles.labelContainer}>
+              <label>Categoría de empleo: </label>
+              {editMode ? (
+                <select
+                  id="categoriaEmpleo"
+                  name="categoriaEmpleo"
+                  value={formData.categoriaEmpleo}
+                  className={styles.input}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      categoriaEmpleo: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Seleccioná una categoría</option>
+                  <option value="Calificado">Calificado</option>
+                  <option value="No Calificado">No calificado</option>
+                </select>
+              ) : (
+                <p>{formData.categoriaEmpleo}</p>
+              )}
+            </div>
+
+            {formData.categoriaEmpleo && (
+              <div className={styles.labelContainer}>
+                <label>Puesto: </label>
+                {editMode ? (
+                  <select
+                    id="puestoEmpleo"
+                    name="puestoEmpleo"
+                    value={formData.puestoEmpleo}
+                    className={styles.input}
+                    onChange={(e) =>
+                      setFormData({ ...formData, puestoEmpleo: e.target.value })
+                    }
+                  >
+                    <option value="">Seleccioná un puesto</option>
+                    {(formData.categoriaEmpleo === "No Calificado"
+                      ? empleosNoCalificados
+                      : empleosCalificados
+                    ).map((empleo, index) => (
+                      <option key={index} value={empleo}>
+                        {empleo}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <p>{formData.puestoEmpleo}</p>
+                )}
+              </div>
+            )}
 
             <div className={styles.labelContainer}>
               <label>Tipo de Empleo:</label>

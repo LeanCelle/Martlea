@@ -21,14 +21,17 @@ export default function RegisterModal({ onClose }) {
     setError("");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+={}\[\]:;"'<>,.?/~`\\|-]{6,}$/;
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+={}\[\]:;"'<>,.?/~`\\|-]{6,}$/;
 
     if (firstName.length < 2 || lastName.length < 2)
       return setError("Nombre y apellido deben tener al menos 2 caracteres.");
     if (!emailRegex.test(email))
       return setError("Por favor ingresa un email válido.");
     if (!passwordRegex.test(password))
-      return setError("La contraseña debe tener al menos 6 caracteres, incluyendo una letra y un número.");
+      return setError(
+        "La contraseña debe tener al menos 6 caracteres, incluyendo una letra y un número."
+      );
     if (password !== confirmPassword)
       return setError("Las contraseñas no coinciden.");
 
@@ -47,7 +50,14 @@ export default function RegisterModal({ onClose }) {
 
       if (signUpError) {
         if (signUpError.message.includes("User already registered")) {
-          setError("El correo ya está registrado. Por favor, intenta con otro.");
+          setError(
+            "El correo ya está registrado. Por favor, intenta con otro."
+          );
+        } else
+        if (signUpError.message.includes("Failed to fetch")) {
+          setError(
+            "Error al crear el usuario, por favor revise su conexión o inténtelo de nuevo más tarde."
+          );
         } else {
           setError("Error al registrar: " + signUpError.message);
         }
@@ -67,18 +77,54 @@ export default function RegisterModal({ onClose }) {
   return (
     <div className={styles.registerModalOverlay}>
       <div className={styles.modalContent}>
-        <button onClick={onClose} className={styles.closeButton}>×</button>
+        <button onClick={onClose} className={styles.closeButton}>
+          ×
+        </button>
         <form onSubmit={handleRegister} className={styles.registerForm}>
           <h1 className={styles.formTitle}>Crear cuenta</h1>
           <div className={styles.nameFields}>
-            <input type="text" placeholder="Nombre" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={styles.formInput} />
-            <input type="text" placeholder="Apellido" value={lastName} onChange={(e) => setLastName(e.target.value)} className={styles.formInput} />
+            <input
+              type="text"
+              placeholder="Nombre"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className={styles.formInput}
+            />
+            <input
+              type="text"
+              placeholder="Apellido"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className={styles.formInput}
+            />
           </div>
-          <input type="email" placeholder="Correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.formInput} />
-          <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className={styles.formInput} />
-          <input type="password" placeholder="Confirmar contraseña" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className={styles.formInput} />
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.formInput}
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.formInput}
+          />
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className={styles.formInput}
+          />
           {error && <p className={styles.formError}>{error}</p>}
-          <button type="submit" disabled={loading} className={`${styles.formButton} ${loading ? styles.disabled : ""}`}>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`${styles.formButton} ${loading ? styles.disabled : ""}`}
+          >
             {loading ? "Creando cuenta..." : "Registrarse"}
           </button>
         </form>

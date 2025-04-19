@@ -9,7 +9,7 @@
 }
 
 .container {
-  padding: 150px 0px 150px 0px;
+  padding: 100px 0px 100px 0px;
   text-align: center;
 }
 
@@ -63,7 +63,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 100px;
+  margin: 100px 0px;
 }
 
 .textGraphic {
@@ -93,7 +93,7 @@
   width: 80%;
 }
 
-/* Proof profiles */
+/* Profiles */
 
 .profilesGrid {
   width: 100%;
@@ -101,77 +101,176 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 30px;
-}
-
-.profilesIntoGrid {
-  display: flex;
-  flex-direction: column;
-  width: 22%;
+  margin-bottom: 100px;
 }
 
 .profileCard {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  transition: box-shadow 0.3s ease;
 }
 
-.profileName {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: left;
-  padding: 0px 0px 10px 10px;
+.profileCard:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.profileImage {
+.fotoContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.fotoContainer img,
+.defaultProfileIcon {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
   object-fit: cover;
-  margin: 10px auto;
+  border-radius: 50%;
+  margin-bottom: 3px;
 }
 
-.profileTitle {
-  font-size: 16px;
+.defaultProfileIcon {
+  color: #c6c6c6;
+}
+
+.fotoContainer h3 {
+  font-size: 24px;
   color: #333;
-  padding-bottom: 20px;
 }
 
-.profileExperience {
-  font-size: 14px;
-  color: #666;
-  text-align: left;
-  padding-bottom: 10px;
+.fotoContainer h4 {
+  font-size: 19.2px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-.profileDescription {
-  font-size: 14px;
-  color: #444;
+.fotoContainer h5 {
+  font-size: 16px;
+  color: #3b4d80; /* ligeramente más oscuro por contraste */
+  font-weight: 500;
+}
+
+.descriptionContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.profileCard h6 {
+  font-weight: normal;
+  font-size: 16px;
+  color: #555;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limita a 4 líneas */
-  line-clamp: 3;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+}
+
+.profileCard p {
+  margin: 0px;
+  color: #555;
   text-align: left;
 }
 
-.profileImageContainer {
-  width: 150px;
-  height: 150px;
-  background: #e0e0e0;
-  border-radius: 50%;
+.cvContainer {
+  height: 100%;
+  margin-bottom: 1px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 10px auto;
+  align-items: flex-end;
 }
 
-.profileIcon {
-  color: #555;
+.seeCv {
+  padding: 0.6rem 1.2rem;
+  background-color: #fff;
+  font-weight: 500;
+  color: #48649c;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.noCv {
+  color: #999;
+  font-style: italic;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+}
+
+.contactContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProfileEmailContainer {
+  display: flex;
+  gap: 5px;
+}
+
+.goToMail {
+  text-decoration: none;
+  background-color: #48649c;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.goToMail:hover {
+  background-color: #508cfc;
+}
+
+.notFound {
+  width: 100%;
+  height: 100vh;
+}
+
+.notFound p {
+  text-align: center;
+}
+
+.totalProfiles {
+  width: 100%;
+  padding: 30px 0px;
+  background-color: #48649c;
+  border-top: 2px solid #eee;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.totalProfiles {
+  text-align: center;
+  font-size: 19px;
+  color: white;
+}
+
+
+/* MEDIA QUERIES PARA RESPONSIVIDAD */
+@media (max-width: 768px) {
+  .profileCard {
+    width: 100%;
+  }
+
+  .profileList {
+    justify-content: center;
+  }
 }
 
 

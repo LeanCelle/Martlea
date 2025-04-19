@@ -120,7 +120,6 @@ const Navbar = () => {
           </Link>
         </div>
         {showSearchBar && <SearchBar />}{" "}
-        {/* 👈 solo muestra si no está en "/" */}
         <div className={styles.sections}>
           <ul className={styles.navLinks}>
             <li>

@@ -55,9 +55,18 @@
       width: 120px;
       height: 120px;
     }
+
+    .defaultProfileIcon {
+      object-fit: cover;
+      border-radius: 50%;
+      color: #c6c6c6;
+      border: 2px solid #48649c;
+      width: 120px;
+      height: 120px;
+    }
   
     .locationIcon {
-      color: #000000;
+      color: #333;
     }
   
     .labelImgNameRoleContainer {
@@ -137,6 +146,11 @@
     .cvContainer a:hover {
       background-color: #508cfc;
     }
+
+    .notAvailableText {
+      color: #999;
+      font-style: italic;
+    }    
   
     .contactAndJobContainer {
       display: flex;

@@ -12,6 +12,7 @@
     "@affinda/affinda": "^7.4.0",
     "@react-spring/web": "^9.7.5",
     "@supabase/supabase-js": "^2.49.4",
+    "aos": "^2.3.4",
     "axios": "^1.8.4",
     "country-state-city": "^3.2.1",
     "firebase": "^11.6.0",

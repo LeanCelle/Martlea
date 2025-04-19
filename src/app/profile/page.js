@@ -136,16 +136,6 @@ const Profile = () => {
       }
     }
 
-    if (!formData.foto) {
-      setErrorMessage("Debes subir una foto.");
-      return false;
-    }
-
-    if (!formData.cv) {
-      setErrorMessage("Debes subir tu CV.");
-      return false;
-    }
-
     // Validar idiomas
     for (let i = 0; i < formData.idiomas.length; i++) {
       const idioma = formData.idiomas[i];
@@ -476,7 +466,7 @@ const Profile = () => {
             <option value="Tiempo Completo">Tiempo completo</option>
             <option value="Medio Tiempo">Medio tiempo</option>
             <option value="Freelance">Freelance</option>
-            <option value="Tiempo completo, Medio tiempo o Freelance">
+            <option value="Todos (Tiempo completo, Medio tiempo o Freelance)">
               Todos (Tiempo completo, Medio tiempo o Freelance)
             </option>
           </select>

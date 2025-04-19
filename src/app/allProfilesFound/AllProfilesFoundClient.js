@@ -1,17 +1,19 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/app/utils/supabaseClient";
 import styles from "@/styles/allProfilesFound.module.css";
 import Loading from "@/components/Loading";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
+import ProfileFilters from "@/components/ProfileFilters";
 
 const AllProfilesFoundClient = () => {
   const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
+  const searchQuery = searchParams.get("query") || "";
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [paramsReady, setParamsReady] = useState(false);
 
   const normalizeText = (text) =>
     text
@@ -20,50 +22,189 @@ const AllProfilesFoundClient = () => {
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/\s+/g, "");
 
-  useEffect(() => {
-    const fetchProfiles = async () => {
-      const { data, error } = await supabase.from("profiles").select("*");
-      if (error) {
-        console.error("Error fetching profiles:", error);
-      } else {
-        const normalizedQuery = normalizeText(query);
-        const filtered = data.filter((profile) => {
-          const combined = `
-            ${profile.nombre}
-            ${profile.apellido}
-            ${profile.titulo}
-            ${profile.titulo_educativo}
-            ${profile.habilidades}
-            ${profile.puesto_Empleo}
-          `;
-          return normalizeText(combined).includes(normalizedQuery);
-        });
+  const nivelesOrden = ["Básico", "Intermedio", "Avanzado", "Nativo"];
 
-        setProfiles(filtered);
+  function cumpleConIdiomas(usuarioIdiomas, filtrosIdiomas) {
+    return filtrosIdiomas.every((filtro) => {
+      const idiomaUsuario = usuarioIdiomas.find(
+        (ui) => ui.idioma === filtro.idioma
+      );
+      if (!idiomaUsuario) return false;
+
+      const nivelUsuario = nivelesOrden.indexOf(idiomaUsuario.nivel);
+      const nivelRequerido = nivelesOrden.indexOf(filtro.nivel);
+
+      return nivelUsuario >= nivelRequerido;
+    });
+  }
+
+  const fetchCandidates = async (filters = null) => {
+    setProfiles([]);
+    setLoading(true);
+
+    let queryBuilder = supabase.from("profiles").select("*");
+
+    if (filters) {
+      const hoy = new Date();
+
+      const fechaMax = new Date(
+        hoy.getFullYear() - filters.edad[0],
+        hoy.getMonth(),
+        hoy.getDate()
+      ); // el más joven permitido: acaba de cumplir la edad mínima
+
+      const fechaMin = new Date(
+        hoy.getFullYear() - filters.edad[1] - 1,
+        hoy.getMonth(),
+        hoy.getDate() + 1
+      ); // el mayor permitido: todavía no cumplió la edad máxima + 1
+
+      // Convertir a formato YYYY-MM-DD
+      const fechaMinISO = fechaMin.toISOString().split("T")[0];
+      const fechaMaxISO = fechaMax.toISOString().split("T")[0];
+      queryBuilder = queryBuilder
+        .gte("fecha_nacimiento", fechaMinISO)
+        .lte("fecha_nacimiento", fechaMaxISO);
+
+      if (filters.genero) {
+        queryBuilder = queryBuilder.eq("genero", filters.genero);
       }
-      setLoading(false);
-    };
 
-    fetchProfiles();
-  }, [query]);
+      if (filters.experiencia && !isNaN(parseInt(filters.experiencia))) {
+        queryBuilder = queryBuilder.gte(
+          "experiencia",
+          parseInt(filters.experiencia)
+        );
+      }
+
+      if (filters.nivelEducativo && filters.nivelEducativo !== "Todos") {
+        queryBuilder = queryBuilder.eq(
+          "nivel_educativo",
+          filters.nivelEducativo
+        );
+      }
+
+      if (
+        filters.tipoEmpleo &&
+        filters.tipoEmpleo !== "Todos" &&
+        filters.tipoEmpleo !==
+          "Todos (Tiempo completo, Medio tiempo o Freelance)"
+      ) {
+        queryBuilder = queryBuilder.eq("tipo_empleo", filters.tipoEmpleo);
+      }
+
+      if (filters.pais && filters.pais !== "Todos") {
+        queryBuilder = queryBuilder.eq("country", filters.pais);
+      }
+
+      if (filters.region && filters.region !== "Todas") {
+        queryBuilder = queryBuilder.eq("region", filters.region);
+      }
+
+      if (filters.categoria && filters.categoria !== "Todas") {
+        queryBuilder = queryBuilder
+          .eq("categoria_Empleo", filters.categoria)
+          .eq("puesto_Empleo", filters.categoria);
+      }
+    }
+
+    const { data, error } = await queryBuilder;
+
+    if (error) {
+      console.error("Error fetching candidates:", error);
+      setLoading(false);
+      return;
+    }
+
+    let filtered = data;
+
+    // Filtrado por idiomas (usando la nueva lógica)
+    if (filters?.idiomas?.length > 0) {
+      filtered = filtered.filter((profile) =>
+        cumpleConIdiomas(profile.idiomas, filters.idiomas)
+      );
+    }
+
+    // Filtro por texto (query en la URL)
+    const normalizedQuery = normalizeText(searchQuery);
+    filtered = filtered.filter((profile) => {
+      const combined = `
+      ${profile.nombre}
+      ${profile.apellido}
+      ${profile.titulo}
+      ${profile.titulo_educativo}
+      ${profile.habilidades}
+      ${profile.puesto_Empleo}
+    `;
+      return normalizeText(combined).includes(normalizedQuery);
+    });
+
+    setProfiles(filtered);
+    setLoading(false);
+  };
+
+  // Buscar al cargar la página
+  useEffect(() => {
+    const getFiltersFromParams = () => {
+      const edadStr = searchParams.get("edad");
+      const filtros = {
+        genero: searchParams.get("genero") || "",
+        edad: edadStr ? edadStr.split("-").map(Number) : [18, 99],
+        experiencia: searchParams.get("exp") || "",
+        nivelEducativo: searchParams.get("edu") || "",
+        tipoEmpleo: searchParams.get("tipo") || "",
+        pais: searchParams.get("pais") || "",
+        region: searchParams.get("region") || "",
+        categoria: searchParams.get("cat") || "",
+        idiomas: [],
+      };
+  
+      const idiomasStr = searchParams.get("idiomas");
+      if (idiomasStr) {
+        try {
+          filtros.idiomas = JSON.parse(idiomasStr);
+        } catch (e) {
+          console.error("Error parsing idiomas:", e);
+        }
+      }
+  
+      return filtros;
+    };
+  
+    const filtros = getFiltersFromParams();
+    fetchCandidates(filtros).then(() => {
+      setParamsReady(true);
+    });
+  }, [searchQuery, searchParams]);
+  
+  if (!paramsReady) return <Loading />;
+
 
   return (
     <div className={styles.resultsContainer}>
-      <h1>Resultados para: &quot;{query}&quot;</h1>
+      <h1>Resultados para: &quot;{searchQuery}&quot;</h1>
+      <ProfileFilters onFilterChange={fetchCandidates} />
 
       {loading ? (
         <Loading />
       ) : profiles.length === 0 ? (
-        <p>No se encontraron candidatos.</p>
+        <div className={styles.notFound}>
+          <p>No se encontraron candidatos.</p>
+        </div>
       ) : (
         <div className={styles.profileList}>
           {profiles.map((profile) => (
             <div key={profile.id} className={styles.profileCard}>
               <div className={styles.fotoContainer}>
-                <img
-                  src={profile.foto_url}
-                  alt={`${profile.nombre} ${profile.apellido}`}
-                />
+                {profile.foto_url ? (
+                  <img
+                    src={profile.foto_url}
+                    alt={`${profile.nombre} ${profile.apellido}`}
+                    className={styles.profileImage}
+                  />
+                ) : (
+                  <FaUserCircle className={styles.defaultProfileIcon} />
+                )}
                 <h3>
                   {profile.nombre} {profile.apellido}
                 </h3>
@@ -84,14 +225,18 @@ const AllProfilesFoundClient = () => {
               </div>
               <div className={styles.contactContainer}>
                 <div className={styles.cvContainer}>
-                  <a
-                    href={`${profile.cv_url}`}
-                    className={styles.seeCv}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Ver CV
-                  </a>
+                  {profile.cv_url ? (
+                    <a
+                      href={profile.cv_url}
+                      className={styles.seeCv}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Ver CV
+                    </a>
+                  ) : (
+                    <span className={styles.noCv}>CV no disponible</span>
+                  )}
                 </div>
                 <div className={styles.ProfileEmailContainer}>
                   <a
