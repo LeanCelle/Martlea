@@ -30,6 +30,10 @@ body {
   background-color: white;
 }
 
+input {
+  background-color: white;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
