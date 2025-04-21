@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "@/styles/profile.module.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { supabase } from "@/app/utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/navigation";
 
 const Profile = () => {

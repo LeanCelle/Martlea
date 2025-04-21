@@ -4,63 +4,43 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/page.module.css";
 import BlurText from "@/components/BlurText";
 import RegisterModal from "@/components/RegisterModal";
+import { supabase } from "@/utils/supabaseClient";
 import SearchBar from "@/components/SearchBar";
-import { supabase } from "@/app/utils/supabaseClient"; // o como lo tengas vos
 import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import profiles from "@/data/proofProfiles";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Home() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [totalProfiles, setTotalProfiles] = useState(0);
 
   useEffect(() => {
-    AOS.init({
-      duration: 800, // duración de la animación
-      once: true, // si querés que se anime solo una vez
-    });
-  }, []);
-
-  const profileIds = [
-    "c1c4ab38-c941-4184-b60a-9472bb87d3f8",
-    "d3c2cff6-ecb8-47e2-815e-ebd4eb839170",
-  ]; // IDs específicos que querés mostrar
-
-  useEffect(() => {
     const fetchProfiles = async () => {
-      setLoading(true);
       const { data, error } = await supabase
-        .from("profiles") // Nombre de tu tabla
-        .select("*")
-        .in("id", profileIds); // Buscar solo los que coincidan con los IDs
+        .from("profiles") // La tabla que contiene los perfiles
+        .select("id", { count: "exact" }); // Seleccionamos solo el ID para contar los registros
 
       if (error) {
-        console.error("Error fetching profiles:", error);
+        console.error("Error al obtener perfiles:", error);
       } else {
-        setProfiles(data);
+        setTotalProfiles(data.length); // Guardamos el número de perfiles
       }
-      setLoading(false);
     };
 
     fetchProfiles();
   }, []);
 
   useEffect(() => {
-    const fetchTotalProfiles = async () => {
-      const { count, error } = await supabase
-        .from("profiles")
-        .select("*", { count: "exact", head: true }); // Solo cuenta, no trae datos
-
-      if (error) {
-        console.error("Error fetching total profiles:", error);
-      } else {
-        setTotalProfiles(count);
-      }
-    };
-
-    fetchTotalProfiles();
+    AOS.init({
+      duration: 800, // duración de la animación
+      once: true, // si querés que se anime solo una vez
+    });
   }, []);
 
   return (
@@ -140,77 +120,61 @@ export default function Home() {
 
         {totalProfiles > 0 && (
           <div className={styles.totalProfiles}>
-            <p style={{}}>
+            <p>
               🎉 +{totalProfiles} perfiles ya forman parte de nuestra red de
               talentos
             </p>
           </div>
         )}
 
-        <div className={styles.profilesGrid}>
-          {profiles.map((profile, index) => (
-            <div
-              key={profile.id}
-              className={styles.profileCard}
-              data-aos="fade-up"
-              data-aos-delay={index * 100} // animación escalonada
-            >
-              <div className={styles.fotoContainer}>
-                {profile.foto_url ? (
-                  <img
-                    src={profile.foto_url}
-                    alt={`${profile.nombre} ${profile.apellido}`}
-                    className={styles.profileImage}
-                  />
-                ) : (
-                  <FaUserCircle className={styles.defaultProfileIcon} />
-                )}
-                <h3>
-                  {profile.nombre} {profile.apellido}
-                </h3>
-                <h4>{profile.titulo}</h4>
-                <h5>
-                  <FaMapMarkerAlt className={styles.locationIcon} />
-                  {profile.country}, {profile.region}
-                </h5>
-              </div>
-              <div className={styles.descritionContainer}>
-                <h6>{profile.descripcion}</h6>
-                <p>
-                  <strong>Habilidades:</strong> {profile.habilidades}
-                </p>
-                <p>
-                  <strong>Años de experiencia:</strong> {profile.experiencia}
-                </p>
-              </div>
-              <div className={styles.contactContainer}>
-                <div className={styles.cvContainer}>
-                  <a
-                    href={profile.cv_url}
-                    className={styles.seeCv}
-                    target="_blank"
-                    rel="noopener noreferrer"
+        <div className={styles.carouselWrapper}>
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1}
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              1024: {
+                slidesPerView: 2,
+              },
+            }}
+          >
+            {profiles.map((profile) => (
+              <SwiperSlide key={profile.id}>
+                <div className={styles.prueba}>
+                  <div
+                    className={styles.profileCard}
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    data-aos-duration="800"
                   >
-                    Ver CV
-                  </a>
+                    <div className={styles.fotoContainer}>
+                      <FaUserCircle className={styles.defaultProfileIcon} />
+                      <h3>{profile.name}</h3>
+                      <h4>{profile.title}</h4>
+                      <h5>
+                        <FaMapMarkerAlt className={styles.locationIcon} />
+                        {profile.location}
+                      </h5>
+                    </div>
+                    <div className={styles.descritionContainer}>
+                      <h6>{profile.description}</h6>
+                      <p>
+                        <strong>Habilidades:</strong> {profile.skills}
+                      </p>
+                      <p>
+                        <strong>Años de experiencia:</strong> {profile.experience}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.ProfileEmailContainer}>
-                  <a
-                    href={`/individualProfile/${profile.id}`}
-                    className={styles.goToMail}
-                  >
-                    Ir a perfil
-                  </a>
-                  <a
-                    href={`mailto:${profile.mail}`}
-                    className={styles.goToMail}
-                  >
-                    Contactar
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </>

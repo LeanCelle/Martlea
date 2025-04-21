@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { supabase } from "@/app/utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import styles from "@/styles/allProfilesFound.module.css";
 import Loading from "@/components/Loading";
 import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
@@ -11,7 +11,7 @@ import ProfileFilters from "@/components/ProfileFilters";
 const AllProfilesFoundClient = () => {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query") || "";
-  const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState([]); // Se inicializa como un array vacío
   const [loading, setLoading] = useState(true);
   const [paramsReady, setParamsReady] = useState(false);
 
@@ -39,10 +39,12 @@ const AllProfilesFoundClient = () => {
   }
 
   const fetchCandidates = async (filters = null) => {
-    setProfiles([]);
+    setProfiles([]); // Limpiar resultados previos
     setLoading(true);
 
-    let queryBuilder = supabase.from("profiles").select("*");
+    let queryBuilder = supabase
+      .from("profiles")
+      .select("*"); // Incluye idiomas relacionados
 
     if (filters) {
       const hoy = new Date();
@@ -51,17 +53,17 @@ const AllProfilesFoundClient = () => {
         hoy.getFullYear() - filters.edad[0],
         hoy.getMonth(),
         hoy.getDate()
-      ); // el más joven permitido: acaba de cumplir la edad mínima
+      );
 
       const fechaMin = new Date(
         hoy.getFullYear() - filters.edad[1] - 1,
         hoy.getMonth(),
         hoy.getDate() + 1
-      ); // el mayor permitido: todavía no cumplió la edad máxima + 1
+      );
 
-      // Convertir a formato YYYY-MM-DD
       const fechaMinISO = fechaMin.toISOString().split("T")[0];
       const fechaMaxISO = fechaMax.toISOString().split("T")[0];
+
       queryBuilder = queryBuilder
         .gte("fecha_nacimiento", fechaMinISO)
         .lte("fecha_nacimiento", fechaMaxISO);
@@ -102,10 +104,9 @@ const AllProfilesFoundClient = () => {
       }
 
       if (filters.categoria && filters.categoria !== "Todas") {
-        queryBuilder = queryBuilder
-          .eq("categoria_Empleo", filters.categoria)
-          .eq("puesto_Empleo", filters.categoria);
+        queryBuilder = queryBuilder.eq("puesto_Empleo", filters.categoria);
       }
+      
     }
 
     const { data, error } = await queryBuilder;
@@ -116,30 +117,28 @@ const AllProfilesFoundClient = () => {
       return;
     }
 
-    let filtered = data;
+    let filtered = data || []; // Aseguramos que filtered siempre sea un array
 
-    // Filtrado por idiomas (usando la nueva lógica)
     if (filters?.idiomas?.length > 0) {
       filtered = filtered.filter((profile) =>
         cumpleConIdiomas(profile.idiomas, filters.idiomas)
       );
     }
 
-    // Filtro por texto (query en la URL)
     const normalizedQuery = normalizeText(searchQuery);
     filtered = filtered.filter((profile) => {
       const combined = `
-      ${profile.nombre}
-      ${profile.apellido}
-      ${profile.titulo}
-      ${profile.titulo_educativo}
-      ${profile.habilidades}
-      ${profile.puesto_Empleo}
-    `;
+        ${profile.nombre}
+        ${profile.apellido}
+        ${profile.titulo}
+        ${profile.titulo_educativo}
+        ${profile.habilidades}
+        ${profile.puesto_Empleo}
+      `;
       return normalizeText(combined).includes(normalizedQuery);
     });
 
-    setProfiles(filtered);
+    setProfiles(filtered); // Guardamos los resultados en el estado
     setLoading(false);
   };
 
@@ -158,7 +157,7 @@ const AllProfilesFoundClient = () => {
         categoria: searchParams.get("cat") || "",
         idiomas: [],
       };
-  
+
       const idiomasStr = searchParams.get("idiomas");
       if (idiomasStr) {
         try {
@@ -167,18 +166,17 @@ const AllProfilesFoundClient = () => {
           console.error("Error parsing idiomas:", e);
         }
       }
-  
+
       return filtros;
     };
-  
+
     const filtros = getFiltersFromParams();
     fetchCandidates(filtros).then(() => {
       setParamsReady(true);
     });
   }, [searchQuery, searchParams]);
-  
-  if (!paramsReady) return <Loading />;
 
+  if (!paramsReady) return <Loading />;
 
   return (
     <div className={styles.resultsContainer}>

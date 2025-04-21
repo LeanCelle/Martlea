@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/loginModal.module.css";
-import { supabase } from "@/app/utils/supabaseClient"; // asegúrate de tener este import bien
+import { supabase } from "@/utils/supabaseClient"; // asegúrate de tener este import bien
 
 export default function LoginModal({ onClose }) {
   const [email, setEmail] = useState("");

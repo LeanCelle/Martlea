@@ -104,23 +104,6 @@
   margin-bottom: 100px;
 }
 
-.profileCard {
-  width: 30%;
-  background-color: #fff;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: box-shadow 0.3s ease;
-}
-
-.profileCard:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
 .fotoContainer {
   height: 100%;
   display: flex;
@@ -177,12 +160,18 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.4em; /* Altura de línea */
+  min-height: calc(1.4em * 4); /* Altura mínima de 4 líneas */
+  max-height: calc(1.4em * 4); /* Altura máxima de 4 líneas */
 }
 
 .profileCard p {
   margin: 0px;
   color: #555;
   text-align: left;
+  line-height: 1.4em; /* Altura de línea */
+  min-height: calc(1.4em * 2); /* Altura mínima de 4 líneas */
+  max-height: calc(1.4em * 2); /* Altura máxima de 4 líneas */
 }
 
 .cvContainer {
@@ -262,14 +251,81 @@
 }
 
 
+.carouselWrapper {
+  width: 80%;
+  display: flex;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.swiper {
+  width: 100%;
+  max-width: 900px; /* Ajustalo según tu diseño */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.prueba {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.profileCard {
+  width: 80%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  margin: 0px 0px 50px 0px;
+}
+
+.profileCard:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Dentro de tu styles.module.css */
+
+.carouselWrapper :global(.swiper-button-next),
+.carouselWrapper :global(.swiper-button-prev) {
+  color: #48649c;
+}
+
+.carouselWrapper :global(.swiper-pagination-bullet) {
+  background-color: #aaa;
+}
+
+.carouselWrapper :global(.swiper-pagination-bullet-active) {
+  background-color: #48649c;
+}
+
+
+
+
+
+
+
 /* MEDIA QUERIES PARA RESPONSIVIDAD */
 @media (max-width: 768px) {
-  .profileCard {
-    width: 100%;
-  }
 
   .profileList {
     justify-content: center;
+  }
+
+  .carouselWrapper {
+    width: 100%;
+  }
+  .profileCard {
+    width: 100%;
+    margin: 0px 20px;
   }
 }
 

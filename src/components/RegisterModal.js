@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/app/utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import styles from "@/styles/registerModal.module.css";
 
 export default function RegisterModal({ onClose }) {

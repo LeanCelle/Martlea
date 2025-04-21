@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/app/utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import styles from "@/styles/individualProfile.module.css";
 import Loading from "@/components/Loading";
 import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
