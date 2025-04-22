@@ -199,6 +199,7 @@
     width: 100%;
     padding: 1rem;
     border-top: 1px solid #eee;
+    z-index: 1000;
   }
 
   .hamburger {
@@ -239,8 +240,9 @@
       color: #333 !important;
     }
     .register {
-      color: #333 !important;
-      padding: 0px;
+      color: white !important;
+      background-color: #48649c !important;
+
     }
   }
   
