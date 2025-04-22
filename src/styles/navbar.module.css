@@ -202,14 +202,14 @@
   }
 
   .hamburger {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 24px;
     height: 18px;
     border: none;
-    background: transparent;
-    cursor: pointer;
+    background-color: #ffffff00;
     z-index: 1000;
   }
   

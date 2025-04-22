@@ -140,13 +140,19 @@ const Navbar = () => {
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
+    const handleClickOutside = (event) => {
+      if (
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setHamburgerOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   // Función para cerrar sesión
@@ -173,11 +179,14 @@ const Navbar = () => {
               className={`${styles.hamburger} ${
                 hamburgerOpen ? styles.open : ""
               }`}
-              onClick={() => setHamburgerOpen(!hamburgerOpen)}
               aria-label="Abrir o cerrar menú"
             >
               <span />
-              <span />
+              <span
+                onClick={() => {
+                  setHamburgerOpen((prev) => !prev);
+                }}
+              ></span>
               <span />
             </button>
 
