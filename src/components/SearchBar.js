@@ -5,7 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
   const router = useRouter();
 
@@ -13,6 +13,7 @@ const SearchBar = () => {
     if (searchText.trim() !== "") {
       router.push(`/allProfilesFound?query=${encodeURIComponent(searchText.trim())}`);
     }
+    if (onSearch) onSearch();
   };
 
   return (

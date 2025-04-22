@@ -265,7 +265,10 @@ const Navbar = () => {
 
       {isMobile && showMobileSearch && (
         <div className={styles.mobileSearchDropdown}>
-          <SearchBar users={users} />
+          <SearchBar
+            users={users}
+            onSearch={() => setShowMobileSearch(false)}
+          />
         </div>
       )}
 

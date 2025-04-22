@@ -55,6 +55,17 @@
   
 
   @media (max-width: 768px) {
+
+    .faqContainer {
+      margin: 0px 0px 100px 0px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      color: #555;
+    }
   
     .faqContainer h1 {
       font-size: 1.3rem;
