@@ -210,30 +210,28 @@
     border: none;
     background: transparent;
     cursor: pointer;
+    z-index: 1000;
   }
   
   .hamburger span {
-    display: block;
     height: 3px;
-    background-color: #333 !important;
+    background-color: #333;
     border-radius: 2px;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+    width: 25px;
   }
   
   /* Estado abierto - animación a X */
   .hamburger.open span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
-    z-index: 1002;
   }
   
   .hamburger.open span:nth-child(2) {
     opacity: 0;
-    z-index: 1002;
   }
   
   .hamburger.open span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-        z-index: 1002;
   }
 
   @media (max-width: 768px) {
