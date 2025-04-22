@@ -5,6 +5,7 @@
   .toggleButton {
     padding: 10px 10px;
     border: none;
+    background-color: #F0F0F0;
     font-size: 16px;
     color: #333;
     border-radius: 6px;

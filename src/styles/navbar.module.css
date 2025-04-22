@@ -233,7 +233,17 @@
   
   .hamburger.open span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-    z-index: 1002;
+        z-index: 1002;
+  }
+
+  @media (max-width: 768px) {
+    .loginLink {
+      color: #333 !important;
+    }
+    .register {
+      color: #333 !important;
+      padding: 0px;
+    }
   }
   
   
