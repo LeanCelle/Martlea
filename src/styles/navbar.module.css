@@ -215,7 +215,7 @@
   .hamburger span {
     display: block;
     height: 3px;
-    background-color: #333;
+    background-color: #333 !important;
     border-radius: 2px;
     transition: 0.3s ease;
   }

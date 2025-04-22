@@ -159,6 +159,7 @@
 
 .notFound p {
   text-align: center;
+  color: #333;
 }
 
 @media (max-width: 768px) {
