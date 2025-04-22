@@ -314,6 +314,72 @@
     text-align: center;
   }
 
+
+
+
+  /* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    gap: 0.75rem;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .photoUpload,
+  .cvUpload {
+    grid-column: span 1;
+  }
+
+  .photoLabel,
+  .cvLabel {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .dynamicInputs {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dynamicItem {
+    margin-right: 0;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  .button {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .buttonSecondary {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .cvFileContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .deleteCvBtn {
+    font-size: 0.75rem;
+  }
+}
   
   
   

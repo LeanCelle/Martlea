@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { FaFilter } from "react-icons/fa";
+import { FaFilter, FaTimes } from "react-icons/fa";
 import styles from "@/styles/profileFilters.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -237,6 +237,10 @@ const ProfileFilters = ({ onFilterChange }) => {
           className={`${styles.filtersPanel} ${closing ? styles.closing : ""}`}
           ref={filtersRef}
         >
+          {/* Botón de cierre */}
+          <button className={styles.closeButton} onClick={closeFilters}>
+            <FaTimes />
+          </button>
           <div>
             <label className={styles.mainLabels}>Categoría de empleo:</label>
             <select

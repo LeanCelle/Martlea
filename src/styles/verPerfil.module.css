@@ -285,6 +285,12 @@
     gap: 1rem;
     margin-top: 2rem;
   }
+  .labelContainer ul li {
+    word-wrap: break-word; /* Permite que las palabras largas se rompan al final de la línea */
+    overflow-wrap: break-word; /* Añadido para mejorar la compatibilidad con navegadores antiguos */
+    word-break: break-all; /* Asegura que las URLs largas se rompan incluso en caracteres no espaciados */
+    white-space: normal; /* Permite que el texto fluya normalmente */
+  }
   
   .buttons button {
     padding: 0.75rem 1.5rem;
@@ -350,3 +356,93 @@
 
   
   
+  /* Media Queries */
+@media (max-width: 768px) {
+  .perfilContainer {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .perfilForm {
+    padding: 0px;
+  }
+  .labelImgNameRoleContainer {
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .labelImgNameContainer {
+    flex-direction: column;
+  }
+
+  .cvAllContainer {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .cvContainer {
+    align-items: center;
+  }
+
+  .contactContainer, .jobContainer, .studyContainer, .othersContainer {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .contactAndJobContainer, .studyAndOthersContainer {
+    display: block;
+  }
+
+  .jobContainer {
+    border-left: 1px solid #ebebeb;
+  }
+
+  .othersContainer {
+    border-left: 1px solid #ebebeb;
+    border-top: none;
+  }
+
+  .input, .textarea {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+  }
+
+  .labelContainer label {
+    font-size: 16px;
+  }
+
+  .labelContainer p {
+    font-size: 14px;
+  }
+
+  .labelContainer ul li {
+    font-size: 14px;
+    word-wrap: break-word; /* Permite que las palabras largas se rompan al final de la línea */
+    overflow-wrap: break-word; /* Añadido para mejorar la compatibilidad con navegadores antiguos */
+    word-break: break-all; /* Asegura que las URLs largas se rompan incluso en caracteres no espaciados */
+    white-space: normal; /* Permite que el texto fluya normalmente */
+  }
+  
+
+  .buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+
+  .fotoSection img {
+    width: 100%;
+    height: auto;
+  }
+}

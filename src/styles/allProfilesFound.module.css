@@ -161,13 +161,106 @@
   text-align: center;
 }
 
-/* MEDIA QUERIES PARA RESPONSIVIDAD */
 @media (max-width: 768px) {
+  .resultsContainer {
+    padding: 1.5rem;
+  }
+
+  .resultsContainer h1 {
+    margin-bottom: 1.5rem;
+    font-size: 20px;
+    color: #333;
+  }
+
   .profileCard {
     width: 100%;
+    margin-bottom: 1rem;
   }
 
   .profileList {
     justify-content: center;
+  }
+
+  .fotoContainer img,
+  .defaultProfileIcon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .fotoContainer h3 {
+    font-size: 20px;
+  }
+
+  .fotoContainer h4 {
+    font-size: 16px;
+  }
+
+  .fotoContainer h5 {
+    font-size: 14px;
+  }
+
+  .profileCard h6 {
+    font-size: 14px;
+  }
+
+  .goToMail {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .seeCv {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultsContainer {
+    padding: 1rem;
+  }
+
+  .profileCard {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .profileList {
+    gap: 10px;
+  }
+
+  .fotoContainer img,
+  .defaultProfileIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .fotoContainer h3 {
+    font-size: 20px;
+  }
+
+  .fotoContainer h4 {
+    font-size: 16px;
+  }
+
+  .fotoContainer h5 {
+    font-size: 14px;
+  }
+
+  .profileCard h6 {
+    font-size: 14px;
+  }
+
+  .profileCard p {
+    font-size: 14px;
+  }
+
+  .goToMail {
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
+  }
+
+  .seeCv {
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
   }
 }

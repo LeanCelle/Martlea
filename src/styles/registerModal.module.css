@@ -132,3 +132,39 @@
   background-color: #6c757d !important;
   cursor: not-allowed;
 }
+
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+
+  .formTitle {
+    font-size: 1.6rem;
+  }
+
+  .formInput {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .formButton {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .formInput {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .formButton {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+}

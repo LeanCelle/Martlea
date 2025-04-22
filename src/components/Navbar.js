@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/utils/supabaseClient";
 import styles from "@/styles/navbar.module.css";
-import { FiUser } from "react-icons/fi";
+import { FiSearch, FiUser } from "react-icons/fi";
 import dynamic from "next/dynamic";
 import SearchBar from "./SearchBar";
 
@@ -27,6 +27,39 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const showSearchBar = pathname !== "/"; // Mostrar barra de búsqueda en todas las páginas menos en la principal
+  const [isMobile, setIsMobile] = useState(false);
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const hamburgerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        setHamburgerOpen(false);
+      }
+    };
+
+    if (hamburgerOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [hamburgerOpen]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // ejecutar al montar
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Función para obtener todos los usuarios
   useEffect(() => {
@@ -35,7 +68,6 @@ const Navbar = () => {
         const res = await fetch("/api/getData");
         const data = await res.json();
         if (res.ok) {
-          console.log(data); // Verifica la respuesta
           setUsers(data);
         } else {
           console.error("Error al obtener usuarios:", data.error);
@@ -44,11 +76,9 @@ const Navbar = () => {
         console.error("Error al conectar con la API:", err.message);
       }
     };
-  
+
     fetchUsers();
   }, []);
-  
-  
 
   // Función para obtener la sesión actual del usuario
   useEffect(() => {
@@ -137,79 +167,179 @@ const Navbar = () => {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Link href="/">
-            <img src="/logo.png" alt="Logo" className={styles.logoImage} />
-          </Link>
+        {isMobile ? (
+          <div className={styles.mobileIcons}>
+            <button
+              className={`${styles.hamburger} ${
+                hamburgerOpen ? styles.open : ""
+              }`}
+              onClick={() => setHamburgerOpen(!hamburgerOpen)}
+              aria-label="Abrir o cerrar menú"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+
+            <div className={styles.logo}>
+              <Link href="/">
+                <img src="/logo.png" alt="Logo" className={styles.logoImage} />
+              </Link>
+            </div>
+
+            <button onClick={() => setShowMobileSearch(!showMobileSearch)}>
+              <FiSearch size={20} color="black" />
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className={styles.logo}>
+              <Link href="/">
+                <img src="/logo.png" alt="Logo" className={styles.logoImage} />
+              </Link>
+            </div>
+            {showSearchBar && !isMobile && <SearchBar users={users} />}
+            <ul className={styles.navLinks}>
+              <li>
+                <Link href="/top-10-empleos">Top 10 empleos</Link>
+              </li>
+              <li>
+                <Link href="/contact">Instructivo</Link>
+              </li>
+              <li>
+                <Link href="/faq">F.A.Q</Link>
+              </li>
+              {!user ? (
+                <>
+                  <li>
+                    <button
+                      className={styles.loginLink}
+                      onClick={() => setShowLoginModal(true)}
+                    >
+                      Iniciar sesión
+                    </button>
+                  </li>
+                  <button
+                    className={styles.register}
+                    onClick={() => setShowRegisterModal(true)}
+                  >
+                    Registrate
+                  </button>
+                </>
+              ) : (
+                <li ref={dropdownRef} className={styles.profileWrapper}>
+                  {user?.foto ? (
+                    <img
+                      src={user.foto}
+                      alt="Foto de perfil"
+                      className={styles.profileImage}
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  ) : (
+                    <FiUser
+                      size={60}
+                      color="#777"
+                      className={styles.profileIcon}
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  )}
+                  {dropdownOpen && (
+                    <div className={styles.dropdownMenu}>
+                      <Link
+                        href="/ver-perfil"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        Ver perfil
+                      </Link>
+                      <button className={styles.logOut} onClick={handleSignOut}>
+                        Cerrar sesión
+                      </button>
+                    </div>
+                  )}
+                </li>
+              )}
+            </ul>
+          </>
+        )}
+      </nav>
+
+      {isMobile && showMobileSearch && (
+        <div className={styles.mobileSearchDropdown}>
+          <SearchBar users={users} />
         </div>
+      )}
 
-        {showSearchBar && <SearchBar users={users} />} {/* Barra de búsqueda visible solo si no estamos en la página principal */}
-
-        <div className={styles.sections}>
-          <ul className={styles.navLinks}>
+      {isMobile && (
+        <div
+          ref={hamburgerRef}
+          className={`${styles.mobileMenu} ${
+            hamburgerOpen ? styles.mobileMenuOpen : ""
+          }`}
+        >
+          <ul>
             <li>
-              <Link href="/top-10-empleos">Top 10 empleos</Link>
+              <Link
+                href="/top-10-empleos"
+                onClick={() => setHamburgerOpen(false)}
+              >
+                Top 10 empleos
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Instructivo</Link>
+              <Link href="/contact" onClick={() => setHamburgerOpen(false)}>
+                Instructivo
+              </Link>
             </li>
             <li>
-              <Link href="/faq">F.A.Q</Link>
+              <Link href="/faq" onClick={() => setHamburgerOpen(false)}>
+                F.A.Q
+              </Link>
             </li>
-
             {!user ? (
               <>
                 <li>
                   <button
                     className={styles.loginLink}
-                    onClick={() => setShowLoginModal(true)}
+                    onClick={() => {
+                      setHamburgerOpen(false);
+                      setShowLoginModal(true);
+                    }}
                   >
                     Iniciar sesión
                   </button>
                 </li>
-                <button
-                  className={styles.register}
-                  onClick={() => setShowRegisterModal(true)}
-                >
-                  Registrate
-                </button>
+                <li>
+                  <button
+                    className={styles.register}
+                    onClick={() => {
+                      setHamburgerOpen(false);
+                      setShowRegisterModal(true);
+                    }}
+                  >
+                    Registrate
+                  </button>
+                </li>
               </>
             ) : (
-              <li ref={dropdownRef} className={styles.profileWrapper}>
-                {user?.foto ? (
-                  <img
-                    src={user.foto}
-                    alt="Foto de perfil"
-                    className={styles.profileImage}
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                  />
-                ) : (
-                  <FiUser
-                    size={60}
-                    color="#777"
-                    className={styles.profileIcon}
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                  />
-                )}
-
-                {dropdownOpen && (
-                  <div className={styles.dropdownMenu}>
-                    <Link
-                      href="/ver-perfil"
-                      onClick={() => setDropdownOpen(false)}
-                    >
-                      Ver perfil
-                    </Link>
-                    <button className={styles.logOut} onClick={handleSignOut}>
-                      Cerrar sesión
-                    </button>
-                  </div>
-                )}
-              </li>
+              <>
+                <li>
+                  <Link
+                    href="/ver-perfil"
+                    onClick={() => setHamburgerOpen(false)}
+                  >
+                    Ver perfil
+                  </Link>
+                </li>
+                <li>
+                  <button className={styles.logOut} onClick={handleSignOut}>
+                    Cerrar sesión
+                  </button>
+                </li>
+              </>
             )}
           </ul>
         </div>
-      </nav>
+      )}
 
       {showRegisterModal && (
         <RegisterModal onClose={() => setShowRegisterModal(false)} />

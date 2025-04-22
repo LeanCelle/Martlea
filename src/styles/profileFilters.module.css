@@ -99,6 +99,7 @@
   }
 
   .filtersPanel div strong {
+    color: #171717;
     width: 100%;
     display: flex;
     gap: 3px;
@@ -148,6 +149,86 @@
     color: #d32f2f;
     transition: 0.3s;
   }
+
+  .closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+  }
+
+
+
+
+  /* MEDIA QUERIES PARA RESPONSIVIDAD */
+@media (max-width: 768px) {
+  .filtersPanel {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .toggleButton {
+      font-size: 14px;
+      padding: 8px 8px;
+  }
+
+  .applyButton {
+      padding: 8px 8px;
+      font-size: 14px;
+  }
+
+  .rangeInput,
+  .experienceInput {
+      font-size: 14px;
+      padding: 5px;
+  }
+
+  .filtersPanel div select,
+  .filtersPanel div label,
+  .filtersPanel div strong {
+      font-size: 14px;
+  }
+
+  .applyButtonContainer {
+      padding: 15px 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtersPanel {
+      padding: 10px;
+  }
+
+  .toggleButton {
+      font-size: 14px;
+      padding: 6px 6px;
+  }
+
+  .applyButton {
+      padding: 6px 6px;
+      font-size: 16px;
+  }
+
+  .rangeInput,
+  .experienceInput {
+      font-size: 14px;
+      padding: 4px;
+  }
+
+  .filtersPanel div select,
+  .filtersPanel div label,
+  .filtersPanel div strong {
+      font-size: 14px;
+  }
+
+  .applyButtonContainer {
+      padding: 10px 0px;
+  }
+}
   
   
   

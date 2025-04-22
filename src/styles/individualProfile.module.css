@@ -327,3 +327,155 @@
   
     
     
+    @media (max-width: 768px) {
+      .perfilContainer {
+        width: 100%;
+        padding: 15px;
+      }
+    
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+    
+      .sectionTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .cvContainer {
+        align-items: center;
+      }
+    
+      .labelImgNameContainer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 1rem;
+        text-align: center;
+      }
+    
+      .labelImgNameRoleContainer,
+      .cvAllContainer {
+        width: 100%;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .cvAllContainer {
+        margin-top: 1rem;
+      }
+    
+      .labelContainer {
+        flex-direction: row;
+      }
+    
+      .contactAndJobContainer,
+      .studyAndOthersContainer {
+        flex-direction: column;
+        border-left: 1px solid #ebebeb;
+      }
+    
+      .contactContainer,
+      .jobContainer,
+      .studyContainer,
+      .othersContainer {
+        width: 100%;
+        padding: 20px;
+        border-left: none;
+        font-size: 14px;
+        word-wrap: break-word; /* Permite que las palabras largas se rompan al final de la línea */
+        overflow-wrap: break-word; /* Añadido para mejorar la compatibilidad con navegadores antiguos */
+        word-break: break-all; /* Asegura que las URLs largas se rompan incluso en caracteres no espaciados */
+        white-space: normal; /* Permite que el texto fluya normalmente */
+      }
+
+      .othersContainer {
+        border-top: none;
+      }
+
+      .labelImgNameRoleContainer p {
+        font-size: 14px;
+      }
+
+      .contactContainer h3 {
+        font-size: 16px;
+      }
+
+      .contactContainer label {
+        font-size: 14px;
+      }
+
+      .contactContainer p {
+        font-size: 14px;
+      }
+
+      .jobContainer h3 {
+        font-size: 16px;
+      }
+
+      .jobContainer label {
+        font-size: 14px;
+      }
+
+      .jobContainer p {
+        font-size: 14px;
+      }
+
+      .studyContainer h3 {
+        font-size: 16px;
+      }
+
+      .studyContainer label {
+        font-size: 14px;
+      }
+
+      .studyContainer p {
+        font-size: 14px;
+      }
+
+      .othersContainer h3 {
+        font-size: 16px;
+      }
+
+      .othersContainer label {
+        font-size: 14px;
+      }
+      .othersContainer p {
+        font-size: 14px;
+      }
+      
+
+
+
+    
+      .labelImgNameContainer img,
+      .defaultProfileIcon {
+        width: 100px;
+        height: 100px;
+      }
+    
+      .idiomaRow {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    
+      .buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    
+      .buttons button {
+        width: 100%;
+      }
+    
+      .editableImage {
+        justify-content: center;
+      }
+    
+      .cvLinkEditable {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }

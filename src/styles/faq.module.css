@@ -53,3 +53,31 @@
     font-weight: bold;
   }
   
+
+  @media (max-width: 768px) {
+  
+    .faqContainer h1 {
+      font-size: 1.3rem;
+    }
+  
+    .faqIntro {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+  
+    .faqItem {
+      padding: 15px;
+    }
+  
+    .faqQuestion h3 {
+      font-size: 1rem;
+    }
+  
+    .faqAnswer {
+      font-size: 14px;
+    }
+  
+    .faqQuestion span {
+      font-size: 1.1em;
+    }
+  }

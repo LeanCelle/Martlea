@@ -32,6 +32,11 @@ body {
 
 input {
   background-color: white;
+  color: #171717;
+}
+
+label {
+  color: #171717;
 }
 
 * {

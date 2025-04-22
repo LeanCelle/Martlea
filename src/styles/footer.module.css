@@ -1,5 +1,5 @@
 .footer {
-    background-color: #48649c;
+    background-color: #000000;
     padding: 40px 20px;
     text-align: center;
   }
@@ -50,7 +50,7 @@
   
   .footerLink {
     color: #ecf0f1;
-    background-color: #48649c;
+    background-color: #000000;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -60,12 +60,12 @@
   }
   
   .footerLink:hover {
-    color: #bdc3c7; /* Cambio de color en hover */
+    color: #48649c; /* Cambio de color en hover */
   }
 
   .hrFooter {
     margin: 0px auto;
-    background-color: #bdc3c7;
+    background-color: #bdc3c73b;
     border: none;
     height: 1px;
     width: 80%;
@@ -77,3 +77,34 @@
     color: #ecf0f1;
   }
   
+
+  @media (max-width: 768px) {
+    .footerContainer {
+      flex-direction: column;
+      justify-content: space-between;
+      width: 80%;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .footerSection {
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      width: auto;
+      width: 100%;
+      margin-bottom: 0;
+    }
+  
+    .footerSection ul {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footerLink {
+      font-size: 14px;
+    }
+  }
