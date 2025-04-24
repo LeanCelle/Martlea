@@ -19,6 +19,10 @@
     margin-bottom: 20px;
     width: 100%;
   }
+
+  .logoContainer img {
+    width: 150px;
+  }
   
   .appName {
     font-size: 1.5rem;
@@ -72,7 +76,7 @@
   }
   
   .footerBottom {
-    margin-top: 40px;
+    margin-top: 28px;
     font-size: 0.875rem;
     color: #ecf0f1;
   }
@@ -106,5 +110,19 @@
 
     .footerLink {
       font-size: 14px;
+    }
+
+    .hrFooter {
+      margin: 20px auto;
+      background-color: #bdc3c73b;
+      border: none;
+      height: 1px;
+      width: 80%;
+    }
+    
+    .footerBottom {
+      margin-top: 8px;
+      font-size: 0.875rem;
+      color: #ecf0f1;
     }
   }

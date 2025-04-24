@@ -39,9 +39,8 @@ const Footer = () => {
         <div className={styles.footerContainer}>
           <div className={styles.logoContainer}>
             <Link href="/">
-              <img src="/logo.png" alt="Logo" width={120} height={40} />
+              <img src="/logo-black.png" alt="Logo" />
             </Link>
-            <p className={styles.appName}>Nombre de la App</p>
           </div>
 
           <div className={styles.footerSection}>
@@ -98,7 +97,7 @@ const Footer = () => {
         <hr className={styles.hrFooter} />
 
         <div className={styles.footerBottom}>
-          <p>&copy; 2025 Nombre de la App. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Talent Bridge DB. Todos los derechos reservados.</p>
         </div>
       </footer>
 

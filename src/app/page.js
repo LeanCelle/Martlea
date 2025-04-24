@@ -15,7 +15,6 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import ProfileFilters from "@/components/ProfileFilters";
 
 export default function Home() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -24,13 +23,13 @@ export default function Home() {
   useEffect(() => {
     const fetchProfiles = async () => {
       const { data, error } = await supabase
-        .from("profiles") // La tabla que contiene los perfiles
-        .select("id", { count: "exact" }); // Seleccionamos solo el ID para contar los registros
+        .from("profiles")
+        .select("id", { count: "exact" });
 
       if (error) {
         console.error("Error al obtener perfiles:", error);
       } else {
-        setTotalProfiles(data.length); // Guardamos el número de perfiles
+        setTotalProfiles(data.length);
       }
     };
 
@@ -50,11 +49,10 @@ export default function Home() {
         <div className={styles.container}>
           <header className={styles.header}>
             <BlurText
-              text="Nombre de la App"
+              text="Talent Bridge DB"
               delay={150}
               animateBy="words"
               direction="top"
-              className="text-2xl mb-8"
             />
             <h2 className={styles.welcomeMessage}>
               Base de talentos, donde empresas y candidatos pueden explorar y

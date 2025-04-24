@@ -2,13 +2,14 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { useSprings, animated } from '@react-spring/web';
+import styles from "@/styles/page.module.css";
 
 const BlurText = ({
   text = '',
   delay = 200,
   className = '',
-  animateBy = 'words', // 'words' or 'letters'
-  direction = 'top', // 'top' or 'bottom'
+  animateBy = 'words',
+  direction = 'top',
   threshold = 0.1,
   rootMargin = '0px',
   animationFrom,
@@ -76,8 +77,10 @@ const BlurText = ({
       {springs.map((props, index) => (
         <animated.span
           key={index}
+          className={styles.mainText}
           style={{
             ...props,
+            background: '', // para que no lo overridee
             display: 'inline-block',
             willChange: 'transform, filter, opacity',
           }}

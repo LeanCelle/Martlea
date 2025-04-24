@@ -9,7 +9,6 @@ import { FiSearch, FiUser } from "react-icons/fi";
 import dynamic from "next/dynamic";
 import SearchBar from "./SearchBar";
 
-// Carga dinámica de los modales para registro e inicio de sesión
 const RegisterModal = dynamic(() => import("@/components/RegisterModal"), {
   ssr: false,
 });
@@ -19,14 +18,14 @@ const LoginModal = dynamic(() => import("@/components/LoginModal"), {
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState([]); // Lista de usuarios para la búsqueda
+  const [users, setUsers] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const dropdownRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
-  const showSearchBar = pathname !== "/"; // Mostrar barra de búsqueda en todas las páginas menos en la principal
+  const showSearchBar = pathname !== "/";
   const [isMobile, setIsMobile] = useState(false);
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -55,13 +54,12 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize(); // ejecutar al montar
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Función para obtener todos los usuarios
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -80,7 +78,6 @@ const Navbar = () => {
     fetchUsers();
   }, []);
 
-  // Función para obtener la sesión actual del usuario
   useEffect(() => {
     const syncSession = async () => {
       const {
@@ -138,7 +135,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -155,7 +151,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Función para cerrar sesión
   const handleSignOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -181,18 +176,26 @@ const Navbar = () => {
               }`}
               aria-label="Abrir o cerrar menú"
             >
-              <span />
               <span
                 onClick={() => {
                   setHamburgerOpen((prev) => !prev);
                 }}
-              ></span>
+              />
+              <span
+                onClick={() => {
+                  setHamburgerOpen((prev) => !prev);
+                }}
+              />
               <span />
             </button>
 
             <div className={styles.logo}>
               <Link href="/">
-                <img src="/logo.png" alt="Logo" className={styles.logoImage} />
+                <img
+                  src="/talent-bridge-db.png"
+                  alt="Logo"
+                  className={styles.logoImage}
+                />
               </Link>
             </div>
 
@@ -204,7 +207,11 @@ const Navbar = () => {
           <>
             <div className={styles.logo}>
               <Link href="/">
-                <img src="/logo.png" alt="Logo" className={styles.logoImage} />
+                <img
+                  src="/talent-bridge-db.png"
+                  alt="Logo"
+                  className={styles.logoImage}
+                />
               </Link>
             </div>
             {showSearchBar && !isMobile && <SearchBar users={users} />}
