@@ -220,7 +220,7 @@ const Navbar = () => {
                 <Link href="/top-10-empleos">Top 10 empleos</Link>
               </li>
               <li>
-                <Link href="/contact">Instructivo</Link>
+                <Link href="/instructivo">Instructivo</Link>
               </li>
               <li>
                 <Link href="/faq">F.A.Q</Link>
@@ -265,7 +265,7 @@ const Navbar = () => {
                         href="/ver-perfil"
                         onClick={() => setDropdownOpen(false)}
                       >
-                        Ver perfil
+                        Mi perfil
                       </Link>
                       <button className={styles.logOut} onClick={handleSignOut}>
                         Cerrar sesión
@@ -296,6 +296,14 @@ const Navbar = () => {
           }`}
         >
           <ul>
+          <li>
+              <Link
+                href="/"
+                onClick={() => setHamburgerOpen(false)}
+              >
+                Inicio
+              </Link>
+            </li>
             <li>
               <Link
                 href="/top-10-empleos"
@@ -305,7 +313,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/contact" onClick={() => setHamburgerOpen(false)}>
+              <Link href="/instructivo" onClick={() => setHamburgerOpen(false)}>
                 Instructivo
               </Link>
             </li>
@@ -346,7 +354,7 @@ const Navbar = () => {
                     href="/ver-perfil"
                     onClick={() => setHamburgerOpen(false)}
                   >
-                    Ver perfil
+                    Mi perfil
                   </Link>
                 </li>
                 <li>

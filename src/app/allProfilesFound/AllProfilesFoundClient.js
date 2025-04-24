@@ -42,9 +42,7 @@ const AllProfilesFoundClient = () => {
     setProfiles([]); // Limpiar resultados previos
     setLoading(true);
 
-    let queryBuilder = supabase
-      .from("profiles")
-      .select("*"); // Incluye idiomas relacionados
+    let queryBuilder = supabase.from("profiles").select("*"); // Incluye idiomas relacionados
 
     if (filters) {
       const hoy = new Date();
@@ -106,7 +104,6 @@ const AllProfilesFoundClient = () => {
       if (filters.categoria && filters.categoria !== "Todas") {
         queryBuilder = queryBuilder.eq("puesto_Empleo", filters.categoria);
       }
-      
     }
 
     const { data, error } = await queryBuilder;
@@ -195,11 +192,14 @@ const AllProfilesFoundClient = () => {
             <div key={profile.id} className={styles.profileCard}>
               <div className={styles.fotoContainer}>
                 {profile.foto_url ? (
-                  <img
-                    src={profile.foto_url}
-                    alt={`${profile.nombre} ${profile.apellido}`}
-                    className={styles.profileImage}
-                  />
+                  <a href={`/individualProfile/${profile.id}`}>
+                    {" "}
+                    <img
+                      src={profile.foto_url}
+                      alt={`${profile.nombre} ${profile.apellido}`}
+                      className={styles.profileImage}
+                    />
+                  </a>
                 ) : (
                   <FaUserCircle className={styles.defaultProfileIcon} />
                 )}

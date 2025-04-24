@@ -81,7 +81,7 @@ export default function RegisterModal({ onClose }) {
           ×
         </button>
         <form onSubmit={handleRegister} className={styles.registerForm}>
-          <h1 className={styles.formTitle}>Crear cuenta</h1>
+          <h2 className={styles.formTitle}>Crear cuenta</h2>
           <div className={styles.nameFields}>
             <input
               type="text"

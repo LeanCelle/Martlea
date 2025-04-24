@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Talent Bridge DB
 
-## Getting Started
+Talent Bridge DB es una aplicación web que conecta a talentos en búsqueda de empleo con empresas y reclutadores que necesitan cubrir puestos laborales. 
 
-First, run the development server:
+Permite a los usuarios crear un perfil completo con su información profesional, mientras que las empresas pueden buscar candidatos mediante filtros avanzados, todo desde una interfaz intuitiva y responsiva.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías utilizadas
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js** – Framework React para SSR y SSG
+- **CSS Modules** – Estilos encapsulados por componente
+- **Supabase** – Base de datos como servicio, autenticación y almacenamiento
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Funcionalidades principales
 
-To learn more about Next.js, take a look at the following resources:
+### Para candidatos:
+- Registro y login
+- Creación de perfil profesional: experiencia, educación, habilidades, idiomas, links (LinkedIn, GitHub, portfolio)
+- Edición de perfil en cualquier momento
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Para reclutadores:
+- Búsqueda de candidatos mediante barra de búsqueda
+- Aplicación de filtros: experiencia, tecnologías, idiomas, ubicación y más
+- Visualización rápida de perfiles y contacto directo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📦 Instalación local
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Cloná el repositorio:
+   ```bash
+   git clone https://github.com/LeanCelle/TalentBridgeDB.git
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+2. Instalá las dependencias: 
+    ```bash 
+    npm install
+
+3. Ejecutá el proyecto:
+    ```bash 
+    npm run dev
+
+---
+
+### 🔒 Seguridad y privacidad
+- Los datos de los usuarios están gestionados con Supabase Auth y su sistema de permisos.
+
+- El acceso a la base de datos está protegido por reglas de Row Level Security (RLS).
+
+- La información de los candidatos no es pública sin autorización explícita.
+
+### 🌐 Despliegue
+- La app puede desplegarse fácilmente en plataformas como Vercel.
+Solo asegurate de configurar correctamente las variables de entorno desde el dashboard.
+
+### 📫 Contacto
+¿Tenés dudas, sugerencias o querés colaborar?
+¡Estoy disponible para charlar!
+
+Leandro Celle<br>
+*Web & Mobile Developer*<br>
+📧 leangerman13@gmail.com

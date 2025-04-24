@@ -104,7 +104,7 @@ const IndividualProfile = () => {
 
             <div className={styles.labelNameContainer}>
               <div className={styles.labelContainer}>
-                <h2>{formData.nombre}</h2>
+                <h1>{formData.nombre}</h1>
                 <h2>{formData.apellido}</h2>
               </div>
               <div className={styles.labelContainer}>

@@ -333,7 +333,7 @@ export default function VerPerfil() {
                     className={styles.input}
                   />
                 ) : (
-                  <h2>{formData.nombre}</h2>
+                  <h1>{formData.nombre}</h1>
                 )}{" "}
                 {editMode ? (
                   <input
