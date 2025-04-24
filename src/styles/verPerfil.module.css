@@ -332,6 +332,7 @@
 
   .buttonSecondary {
     padding: 5px;
+    background-color: #F0F0F0;
     border: 1px solid #ccc;
     border-radius: 6px;
     width: 100%;

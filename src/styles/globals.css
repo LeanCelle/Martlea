@@ -35,6 +35,11 @@ input {
   color: #171717;
 }
 
+textarea {
+  background-color: white;
+  color: #171717;
+}
+
 label {
   color: #171717;
 }
