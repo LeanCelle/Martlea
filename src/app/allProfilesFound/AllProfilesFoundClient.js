@@ -15,13 +15,6 @@ const AllProfilesFoundClient = () => {
   const [loading, setLoading] = useState(true);
   const [paramsReady, setParamsReady] = useState(false);
 
-  const normalizeText = (text) =>
-    text
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "");
-
   const nivelesOrden = ["Básico", "Intermedio", "Avanzado", "Nativo"];
 
   function cumpleConIdiomas(usuarioIdiomas, filtrosIdiomas) {
@@ -189,11 +182,11 @@ const AllProfilesFoundClient = () => {
 
     const filtros = getFiltersFromParams();
     fetchCandidates(filtros).then(() => {
-      setParamsReady(true);
     });
-  }, [searchQuery, searchParams]);
 
-  if (!paramsReady) return <Loading />;
+    fetchCandidates(filtros);
+    
+  }, [searchQuery, searchParams]);
 
   return (
     <div className={styles.resultsContainer}>

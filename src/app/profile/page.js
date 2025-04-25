@@ -155,6 +155,21 @@ const Profile = () => {
       }
     }
 
+    // Validar que el usuario tenga al menos 18 años
+    const fechaNacimiento = new Date(formData.fechaNacimiento);
+    const hoy = new Date();
+    const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    const mes = hoy.getMonth() - fechaNacimiento.getMonth();
+    const dia = hoy.getDate() - fechaNacimiento.getDate();
+
+    const tiene18 =
+      edad > 18 || (edad === 18 && (mes > 0 || (mes === 0 && dia >= 0)));
+
+    if (!tiene18) {
+      setErrorMessage("Debés tener al menos 18 años para registrarte.");
+      return false;
+    }
+
     return true;
   };
 

@@ -90,6 +90,8 @@
     cursor: pointer;
     width: 100%;
     height: 50vh;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px
   }
 
   .candidateButton:hover {
@@ -105,6 +107,8 @@
     cursor: pointer;
     width: 100%;
     height: 50vh;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
   
   .recruiterButton:hover {
@@ -167,9 +171,14 @@
         border: none;
         border-bottom: white solid 1px;
         font-size: 18px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 20px;
       }
     .recruiterButton {
         font-size: 18px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
     .roleTitle {
         font-size: 18px;

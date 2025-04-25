@@ -40,3 +40,20 @@
   .searchBar::placeholder {
     color: #888;
   }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ffffff88;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: auto;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

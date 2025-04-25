@@ -296,11 +296,8 @@ const Navbar = () => {
           }`}
         >
           <ul>
-          <li>
-              <Link
-                href="/"
-                onClick={() => setHamburgerOpen(false)}
-              >
+            <li>
+              <Link href="/" onClick={() => setHamburgerOpen(false)}>
                 Inicio
               </Link>
             </li>
