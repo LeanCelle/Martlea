@@ -22,7 +22,6 @@ export const metadata = {
   icons: {
     icon: "/min-logo.png",
   },
-  themeColor: "#ffffff",
 };
 
 export const viewport = {

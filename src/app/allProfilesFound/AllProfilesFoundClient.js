@@ -11,7 +11,7 @@ import ProfileFilters from "@/components/ProfileFilters";
 const AllProfilesFoundClient = () => {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query") || "";
-  const [profiles, setProfiles] = useState([]); // Se inicializa como un array vacío
+  const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [paramsReady, setParamsReady] = useState(false);
 
@@ -122,24 +122,44 @@ const AllProfilesFoundClient = () => {
       );
     }
 
-    const normalizedQuery = normalizeText(searchQuery);
+    const normalizeText = (text) =>
+      text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    
+    const queryWords = searchQuery
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .split(/\s+/)
+      .filter((word) => word.length > 1);
+    
+
     filtered = filtered.filter((profile) => {
-      const combined = `
-        ${profile.nombre}
-        ${profile.apellido}
-        ${profile.titulo}
-        ${profile.titulo_educativo}
-        ${profile.habilidades}
-        ${profile.puesto_Empleo}
-      `;
-      return normalizeText(combined).includes(normalizedQuery);
+      const campos = [
+        profile.nombre || "",
+        profile.apellido || "",
+        profile.titulo || "",
+        profile.titulo_educativo || "",
+        profile.habilidades || "",
+        profile.puesto_Empleo || "",
+        profile.descripcion || "",
+      ];
+
+      const textoPerfil = normalizeText(
+        campos.join(" ") +
+          " " +
+          (profile.habilidades || "").split(",").join(" ")
+      );
+
+      return queryWords.some((word) => textoPerfil.includes(word));
     });
 
-    setProfiles(filtered); // Guardamos los resultados en el estado
+    setProfiles(filtered);
     setLoading(false);
   };
 
-  // Buscar al cargar la página
   useEffect(() => {
     const getFiltersFromParams = () => {
       const edadStr = searchParams.get("edad");
@@ -177,7 +197,11 @@ const AllProfilesFoundClient = () => {
 
   return (
     <div className={styles.resultsContainer}>
-      <h1>Resultados para: &quot;{searchQuery}&quot;</h1>
+      <h1>
+        Resultados para: <span className={styles.highlight}>{searchQuery}</span>{" "}
+        ({profiles.length} perfiles encontrados)
+      </h1>
+
       <ProfileFilters onFilterChange={fetchCandidates} />
 
       {loading ? (

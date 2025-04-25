@@ -186,10 +186,10 @@ export default function VerPerfil() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     let fotoUrl = formData.foto_url;
     let cvUrl = formData.cv_url;
-
+  
     // Subir nueva foto
     if (formData.foto_url instanceof File) {
       const { data, error } = await supabase.storage
@@ -198,14 +198,14 @@ export default function VerPerfil() {
           cacheControl: "3600",
           upsert: true,
         });
-
+  
       if (error) {
         console.error("Error subiendo foto:", error.message);
       } else {
         fotoUrl = `https://jaaedrbelvfwxangyslm.supabase.co/storage/v1/object/public/fotos/${data.path}`;
       }
     }
-
+  
     // Subir nuevo CV
     if (formData.cv_url instanceof File) {
       const { data, error } = await supabase.storage
@@ -214,60 +214,82 @@ export default function VerPerfil() {
           cacheControl: "3600",
           upsert: true,
         });
-
+  
       if (error) {
         console.error("Error subiendo CV:", error.message);
       } else {
         cvUrl = `https://jaaedrbelvfwxangyslm.supabase.co/storage/v1/object/public/cvs/${data.path}`;
       }
     }
-
-    const { error: updateError } = await supabase
+  
+    // Primero chequeamos si el perfil ya existe
+    const { data: existingProfile, error: fetchError } = await supabase
       .from("profiles")
-      .update({
-        nombre: formData.nombre,
-        apellido: formData.apellido,
-        mail: formData.mail,
-        telefono: formData.telefono,
-        foto_url: fotoUrl,
-        cv_url: cvUrl,
-        titulo: formData.titulo,
-        titulo_educativo: formData.tituloEducativo,
-        descripcion: formData.descripcion,
-        fecha_nacimiento: formData.fechaNacimiento,
-        genero: formData.genero,
-        idiomas:
-          typeof formData.idiomas === "string"
-            ? JSON.parse(formData.idiomas)
-            : formData.idiomas,
-        habilidades: formData.habilidades,
-        experiencia: parseInt(formData.experiencia),
-        nivel_educativo: formData.nivelEducativo,
-        tipo_empleo: formData.tipoEmpleo,
-        categoria_Empleo: formData.categoriaEmpleo,
-        puesto_Empleo: formData.puestoEmpleo,
-        links: formData.links,
-        country: formData.country,
-        region: formData.region,
-      })
-      .eq("id", user.id);
-
-    if (updateError) {
-      console.error("Error actualizando perfil:", updateError.message);
+      .select("*")
+      .eq("id", user.id)
+      .single();
+  
+    const profilePayload = {
+      id: user.id,
+      nombre: formData.nombre,
+      apellido: formData.apellido,
+      mail: formData.mail,
+      telefono: formData.telefono,
+      foto_url: fotoUrl,
+      cv_url: cvUrl,
+      titulo: formData.titulo,
+      titulo_educativo: formData.tituloEducativo,
+      descripcion: formData.descripcion,
+      fecha_nacimiento: formData.fechaNacimiento || null,
+      genero: formData.genero,
+      idiomas:
+        typeof formData.idiomas === "string"
+          ? JSON.parse(formData.idiomas)
+          : formData.idiomas,
+      habilidades: formData.habilidades,
+      experiencia: parseInt(formData.experiencia),
+      nivel_educativo: formData.nivelEducativo,
+      tipo_empleo: formData.tipoEmpleo,
+      categoria_Empleo: formData.categoriaEmpleo,
+      puesto_Empleo: formData.puestoEmpleo,
+      links: formData.links,
+      country: formData.country,
+      region: formData.region,
+    };
+  
+    if (fetchError || !existingProfile) {
+      // Si no existe, creamos
+      const { error: createError } = await supabase
+        .from("profiles")
+        .insert(profilePayload)
+        .single();
+  
+      if (createError) {
+        console.error("Error creando perfil:", createError.message);
+      } else {
+        setSuccessMessage("Perfil creado correctamente ✅");
+      }
     } else {
-      setSuccessMessage("Perfil actualizado correctamente ✅");
-      setEditMode(false);
-      await fetchData();
-
-      // Hacemos que el mensaje desaparezca luego de 4 segundos
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 4000);
-      await fetchData();
+      // Si existe, actualizamos
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update(profilePayload)
+        .eq("id", user.id);
+  
+      if (updateError) {
+        console.error("Error actualizando perfil:", updateError.message);
+      } else {
+        setSuccessMessage("Perfil actualizado correctamente ✅");
+      }
     }
-
+  
+    // Mensaje temporal
+    setTimeout(() => setSuccessMessage(""), 4000);
+    await fetchData();
+    setEditMode(false);
     setLoading(false);
   };
+  
 
   if (loading) return <Loading />;
 

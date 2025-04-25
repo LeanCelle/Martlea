@@ -8,7 +8,7 @@ const Faq = () => {
 
   const faqData = [
     {
-      question: '¿Qué es esta plataforma y cómo me beneficia?',
+      question: '¿Para qué es esta plataforma y cómo me beneficia?',
       answer: 'Esta plataforma te permite crear un perfil profesional, destacando tus habilidades y experiencia, para que las empresas puedan encontrarte y ofrecerte oportunidades laborales.'
     },
     {
@@ -29,7 +29,7 @@ const Faq = () => {
     },
     {
       question: '¿Cómo sabré si las empresas están interesadas en mi perfil?',
-      answer: 'Si una empresa está interesada en tu perfil, te contactará directamente a través de tus datos de contactos previamente completados. Aségurate que tus datos esten los correctos.'
+      answer: 'Si una empresa está interesada en tu perfil, te contactará directamente a través de tus datos de contactos previamente completados. Asegurate de que tus datos estén correctos.'
     },
     {
       question: '¿Cómo puedo actualizar mi perfil?',

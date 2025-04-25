@@ -38,8 +38,8 @@ export default function Home() {
 
   useEffect(() => {
     AOS.init({
-      duration: 800, // duración de la animación
-      once: true, // si querés que se anime solo una vez
+      duration: 800,
+      once: true,
     });
   }, []);
 
@@ -117,14 +117,7 @@ export default function Home() {
           </div>
         </div>
 
-        {totalProfiles > 0 && (
-          <div className={styles.totalProfiles}>
-            <p>
-              🎉 +{totalProfiles} perfiles ya forman parte de nuestra red de
-              talentos
-            </p>
-          </div>
-        )}
+      
 
         <div className={styles.carouselWrapper}>
           <Swiper
@@ -179,3 +172,12 @@ export default function Home() {
     </>
   );
 }
+
+/*         {totalProfiles > 0 && (
+          <div className={styles.totalProfiles}>
+            <p>
+              🎉 +{totalProfiles} perfiles ya forman parte de nuestra red de
+              talentos
+            </p>
+          </div>
+        )} */

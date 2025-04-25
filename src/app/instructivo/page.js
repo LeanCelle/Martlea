@@ -43,7 +43,7 @@ const stepsRecruiter = [
     title: "1. Buscá talentos",
     description: `Usá la barra de búsqueda para ingresar el título del puesto que querés cubrir o habilidades específicas que estés buscando.
   
-  🔍 Consejo: cuanto más específico seas en tu búsqueda, mejores resultados vas a obtener. Ejemplo: "Diseñador UX con experiencia en Figma".`,
+  🔍 Consejo: si queres encontrar un analista contable que tenga experiencia en liquidación de impuestos, podes buscar "Contable impuestos" o "contador impuestos" usá estratégicamente las palabras, combinándolas como quieras, de esa forma vas a ser más preciso y encontrarás con mayor facilidad al perfil que buscas!".`,
   },
   {
     title: "2. Aplicá filtros",
