@@ -10,10 +10,23 @@ const SearchBar = ({ onSearch }) => {
   const router = useRouter();
 
   const handleSearch = () => {
-    if (searchText.trim() !== "") {
-      router.push(`/allProfilesFound?query=${encodeURIComponent(searchText.trim())}`);
+    const trimmedText = searchText.trim();
+    if (!trimmedText) return;
+
+    router.push(`/allProfilesFound?query=${encodeURIComponent(trimmedText)}`);
+
+    if (onSearch) {
+      onSearch(trimmedText);
     }
-    if (onSearch) onSearch();
+
+    setSearchText("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
   };
 
   return (
@@ -24,9 +37,15 @@ const SearchBar = ({ onSearch }) => {
         className={styles.searchBar}
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        onKeyDown={handleKeyDown}
+        aria-label="Campo de búsqueda de candidatos"
       />
-      <button className={styles.searchButton} onClick={handleSearch}>
+      <button
+        type="button"
+        className={styles.searchButton}
+        onClick={handleSearch}
+        aria-label="Buscar candidato"
+      >
         <FiSearch size={20} color="white" />
       </button>
     </div>

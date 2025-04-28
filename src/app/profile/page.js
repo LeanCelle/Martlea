@@ -82,20 +82,17 @@ const Profile = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [formData.foto]);
 
-  // Maneja los inputs normales (texto, select, etc.)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Maneja los archivos
   const handleFileChange = async (e) => {
     const { name, files } = e.target;
     const file = files[0];
 
     if (!file) return;
 
-    // Validar tipos si querés limitar extensiones
     const validFotoTypes = ["image/jpeg", "image/png", "image/jpg"];
     const validCvTypes = ["application/pdf"];
 
@@ -136,7 +133,6 @@ const Profile = () => {
       }
     }
 
-    // Validar idiomas
     for (let i = 0; i < formData.idiomas.length; i++) {
       const idioma = formData.idiomas[i];
       if (!idioma.idioma || !idioma.nivel) {
@@ -147,7 +143,6 @@ const Profile = () => {
       }
     }
 
-    // Validar links (si están)
     for (let link of formData.links) {
       if (!link || link.trim() === "") {
         setErrorMessage("Hay un link vacío, completalo o eliminálo.");
@@ -155,7 +150,6 @@ const Profile = () => {
       }
     }
 
-    // Validar que el usuario tenga al menos 18 años
     const fechaNacimiento = new Date(formData.fechaNacimiento);
     const hoy = new Date();
     const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
@@ -226,7 +220,6 @@ const Profile = () => {
       if (formData.foto) {
         const file = formData.foto;
 
-        // Validación adicional
         if (!(file instanceof File)) {
           console.error("El archivo no es válido:", file);
           return;
@@ -239,7 +232,7 @@ const Profile = () => {
         const { data, error } = await supabase.storage
           .from("fotos")
           .upload(filePath, file, {
-            contentType: file.type, // <- Esto es clave
+            contentType: file.type,
             cacheControl: "3600",
             upsert: false,
           });
@@ -250,7 +243,6 @@ const Profile = () => {
           .data.publicUrl;
       }
 
-      // 2. Subir el CV (si hay)
       let cvUrl = null;
       if (formData.cv) {
         const { data, error } = await supabase.storage
@@ -265,10 +257,9 @@ const Profile = () => {
       const user = await supabase.auth.getUser();
       const { id } = user.data.user;
 
-      // 3. Insertar los datos
       const { error: insertError } = await supabase.from("profiles").insert([
         {
-          id, // este es clave
+          id,
           nombre: formData.nombre,
           apellido: formData.apellido,
           mail: formData.mail,
@@ -315,7 +306,6 @@ const Profile = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Formulario de Registro</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
-        {/* --- FOTO --- */}
         <div className={styles.photoUpload}>
           <input
             type="file"
@@ -339,7 +329,6 @@ const Profile = () => {
           </label>
         </div>
 
-        {/* --- CV --- */}
         <div className={styles.cvUpload}>
           <input
             type="file"
@@ -371,7 +360,6 @@ const Profile = () => {
           )}
         </div>
 
-        {/* --- INFORMACIÓN PERSONAL --- */}
         <div className={styles.information}>
           <h2 className={styles.sectionTitle}>Información Personal</h2>
           <div className={styles.nameLastname}>
@@ -443,7 +431,6 @@ const Profile = () => {
           />
         </div>
 
-        {/* --- INFORMACIÓN LABORAL --- */}
         <div className={styles.information}>
           <h2 className={styles.sectionTitle}>Información Laboral</h2>
           <input
@@ -487,13 +474,11 @@ const Profile = () => {
           </select>
         </div>
 
-        {/* --- SEARCHING FOR --- */}
         <div className={styles.searchingFor}>
           <h2 className={styles.sectionTitle}>
             ¿Qué tipo de empleo estás buscando?
           </h2>
 
-          {/* Tipo de empleo: categoría */}
           <div className={styles.formGroup}>
             <select
               id="categoriaEmpleo"
@@ -508,7 +493,6 @@ const Profile = () => {
             </select>
           </div>
 
-          {/* Tipo de empleo: puesto específico */}
           {formData.categoriaEmpleo && (
             <div className={styles.formGroup}>
               <select
@@ -532,7 +516,6 @@ const Profile = () => {
           )}
         </div>
 
-        {/* --- EDUCACIÓN --- */}
         <div className={styles.information}>
           <h2 className={styles.sectionTitle}>Educación</h2>
           <select
@@ -614,7 +597,6 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* --- LINKS --- */}
         <div className={styles.information}>
           <h2 className={styles.sectionTitle}>Links</h2>
           {formData.links.map((link, index) => (
@@ -648,7 +630,6 @@ const Profile = () => {
           <div className={styles.errorMessage}>{errorMessage}</div>
         )}
 
-        {/* --- SUBMIT --- */}
         <button type="submit" className={styles.button} disabled={isSubmitting}>
           {isSubmitting
             ? "Creando perfil..."

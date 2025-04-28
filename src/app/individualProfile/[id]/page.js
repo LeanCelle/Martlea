@@ -30,7 +30,7 @@ const IndividualProfile = () => {
     region: "",
   });
   const [loading, setLoading] = useState(true);
-  const [edad, setEdad] = useState(null); // Estado para la edad
+  const [edad, setEdad] = useState(null);
   const params = useParams();
   const id = params.id;
 
@@ -158,7 +158,6 @@ const IndividualProfile = () => {
             <div className={styles.labelContainer}>
               <label>Edad:</label>
               <p>{edad !== null ? edad : "Cargando..."}</p>{" "}
-              {/* Mostramos la edad calculada */}
             </div>
 
             <div className={styles.labelContainer}>

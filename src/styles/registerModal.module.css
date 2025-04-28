@@ -60,8 +60,6 @@
   color: #000;
 }
 
-/* === FORMULARIO === */
-
 .registerForm {
   display: flex;
   flex-direction: column;
@@ -134,7 +132,7 @@
 }
 
 
-/* Media Queries for Mobile */
+/* Media Queries */
 @media (max-width: 768px) {
 
   .formTitle {

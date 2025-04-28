@@ -15,7 +15,6 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Estos se usan automáticamente en App Router
 export const metadata = {
   title: "Talent Bridge DB",
   description: "Talent Bridge DB es una plataforma de búsqueda de talentos donde empresas encuentran candidatos ideales y profesionales crean su perfil laboral completo.",

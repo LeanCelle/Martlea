@@ -190,7 +190,6 @@ export default function VerPerfil() {
     let fotoUrl = formData.foto_url;
     let cvUrl = formData.cv_url;
   
-    // Subir nueva foto
     if (formData.foto_url instanceof File) {
       const { data, error } = await supabase.storage
         .from("fotos")
@@ -206,7 +205,6 @@ export default function VerPerfil() {
       }
     }
   
-    // Subir nuevo CV
     if (formData.cv_url instanceof File) {
       const { data, error } = await supabase.storage
         .from("cvs")
@@ -222,7 +220,6 @@ export default function VerPerfil() {
       }
     }
   
-    // Primero chequeamos si el perfil ya existe
     const { data: existingProfile, error: fetchError } = await supabase
       .from("profiles")
       .select("*")
@@ -258,7 +255,6 @@ export default function VerPerfil() {
     };
   
     if (fetchError || !existingProfile) {
-      // Si no existe, creamos
       const { error: createError } = await supabase
         .from("profiles")
         .insert(profilePayload)
@@ -270,7 +266,6 @@ export default function VerPerfil() {
         setSuccessMessage("Perfil creado correctamente ✅");
       }
     } else {
-      // Si existe, actualizamos
       const { error: updateError } = await supabase
         .from("profiles")
         .update(profilePayload)
@@ -283,7 +278,6 @@ export default function VerPerfil() {
       }
     }
   
-    // Mensaje temporal
     setTimeout(() => setSuccessMessage(""), 4000);
     await fetchData();
     setEditMode(false);

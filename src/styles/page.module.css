@@ -1,4 +1,3 @@
-/* src/styles/page.module.css */
 .page {
   display: flex;
   flex-direction: column;
@@ -59,7 +58,6 @@
   text-decoration-color: #48649c;
 }
 
-/* Graphic */
 
 .graphicContainer {
   width: 100%;
@@ -141,7 +139,7 @@
 
 .fotoContainer h5 {
   font-size: 16px;
-  color: #3b4d80; /* ligeramente más oscuro por contraste */
+  color: #3b4d80;
   font-weight: 500;
 }
 
@@ -163,18 +161,18 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.4em; /* Altura de línea */
-  min-height: calc(1.4em * 4); /* Altura mínima de 4 líneas */
-  max-height: calc(1.4em * 4); /* Altura máxima de 4 líneas */
+  line-height: 1.4em;
+  min-height: calc(1.4em * 4);
+  max-height: calc(1.4em * 4);
 }
 
 .profileCard p {
   margin: 0px;
   color: #555;
   text-align: left;
-  line-height: 1.4em; /* Altura de línea */
-  min-height: calc(1.4em * 2); /* Altura mínima de 4 líneas */
-  max-height: calc(1.4em * 2); /* Altura máxima de 4 líneas */
+  line-height: 1.4em;
+  min-height: calc(1.4em * 2);
+  max-height: calc(1.4em * 2);
 }
 
 .cvContainer {
@@ -263,7 +261,7 @@
 
 .swiper {
   width: 100%;
-  max-width: 900px; /* Ajustalo según tu diseño */
+  max-width: 900px;
 }
 
 .swiper-slide {

@@ -13,7 +13,6 @@ const AllProfilesFoundClient = () => {
   const searchQuery = searchParams.get("query") || "";
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [paramsReady, setParamsReady] = useState(false);
 
   const nivelesOrden = ["Básico", "Intermedio", "Avanzado", "Nativo"];
 
@@ -32,10 +31,10 @@ const AllProfilesFoundClient = () => {
   }
 
   const fetchCandidates = async (filters = null) => {
-    setProfiles([]); // Limpiar resultados previos
+    setProfiles([]);
     setLoading(true);
 
-    let queryBuilder = supabase.from("profiles").select("*"); // Incluye idiomas relacionados
+    let queryBuilder = supabase.from("profiles").select("*");
 
     if (filters) {
       const hoy = new Date();
@@ -107,7 +106,7 @@ const AllProfilesFoundClient = () => {
       return;
     }
 
-    let filtered = data || []; // Aseguramos que filtered siempre sea un array
+    let filtered = data || [];
 
     if (filters?.idiomas?.length > 0) {
       filtered = filtered.filter((profile) =>

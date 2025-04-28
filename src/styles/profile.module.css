@@ -1,5 +1,3 @@
-/* styles/register.module.css */
-
 .container {
     max-width: 800px;
     margin: 2rem auto;
@@ -320,7 +318,7 @@
 
 
 
-  /* Media Queries for Mobile Devices */
+  /* Media Queries */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;

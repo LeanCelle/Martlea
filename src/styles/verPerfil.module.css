@@ -287,10 +287,10 @@
     margin-top: 2rem;
   }
   .labelContainer ul li {
-    word-wrap: break-word; /* Permite que las palabras largas se rompan al final de la línea */
-    overflow-wrap: break-word; /* Añadido para mejorar la compatibilidad con navegadores antiguos */
-    word-break: break-all; /* Asegura que las URLs largas se rompan incluso en caracteres no espaciados */
-    white-space: normal; /* Permite que el texto fluya normalmente */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
   }
   
   .buttons button {
@@ -427,10 +427,10 @@
 
   .labelContainer ul li {
     font-size: 14px;
-    word-wrap: break-word; /* Permite que las palabras largas se rompan al final de la línea */
-    overflow-wrap: break-word; /* Añadido para mejorar la compatibilidad con navegadores antiguos */
-    word-break: break-all; /* Asegura que las URLs largas se rompan incluso en caracteres no espaciados */
-    white-space: normal; /* Permite que el texto fluya normalmente */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
   }
   
 

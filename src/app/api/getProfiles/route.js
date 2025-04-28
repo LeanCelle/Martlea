@@ -1,5 +1,3 @@
-// src/pages/api/getProfiles/route.js
-
 import { supabase } from "@/utils/supabaseClient";
 
 export async function GET(req) {
@@ -29,7 +27,6 @@ export async function GET(req) {
       .from("profiles")
       .select("*");
 
-    // Aplicar filtros
     if (filters) {
       const hoy = new Date();
 
@@ -102,7 +99,7 @@ export async function GET(req) {
       return;
     }
     
-    let filtered = data || []; // Ensure it's always an array
+    let filtered = data || [];
     
     if (filters?.idiomas?.length > 0) {
       filtered = filtered.filter((profile) =>
@@ -123,7 +120,7 @@ export async function GET(req) {
       return normalizeText(combined).includes(normalizedQuery);
     });
     
-    console.log(filtered); // Log to verify the data structure
+    console.log(filtered);
     setProfiles(filtered);
     setLoading(false);
     

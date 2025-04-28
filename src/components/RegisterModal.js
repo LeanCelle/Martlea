@@ -64,9 +64,8 @@ export default function RegisterModal({ onClose }) {
         return;
       }
 
-      // Si tuviste éxito:
       onClose();
-      router.push("/profile"); // Redirigimos al perfil (podés cambiarlo)
+      router.push("/profile");
     } catch (err) {
       setError("Error inesperado: " + err.message);
     } finally {

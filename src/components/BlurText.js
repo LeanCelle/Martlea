@@ -80,7 +80,7 @@ const BlurText = ({
           className={styles.mainText}
           style={{
             ...props,
-            background: '', // para que no lo overridee
+            background: '',
             display: 'inline-block',
             willChange: 'transform, filter, opacity',
           }}

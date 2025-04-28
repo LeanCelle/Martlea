@@ -1,5 +1,3 @@
-// src/pages/api/getData/route.js
-
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(

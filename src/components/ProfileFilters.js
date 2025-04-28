@@ -69,7 +69,6 @@ const ProfileFilters = ({ onFilterChange }) => {
     puesto_Empleo: "",
   });
 
-  // Cierra el panel si clickean fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (filtersRef.current && !filtersRef.current.contains(event.target)) {
@@ -101,12 +100,11 @@ const ProfileFilters = ({ onFilterChange }) => {
   };
 
   const handleChange = (key, value) => {
-    // Si se borra la categoría de empleo, también se borra el puesto de empleo
     if (key === "categoria_Empleo" && value === "") {
       setFilters((prev) => ({
         ...prev,
         [key]: value,
-        puesto_Empleo: "", // Se resetea también
+        puesto_Empleo: "",
       }));
     } else {
       setFilters((prev) => ({
@@ -129,7 +127,6 @@ const ProfileFilters = ({ onFilterChange }) => {
 
     const params = new URLSearchParams(searchParams.toString());
 
-    // Eliminamos solo los filtros definidos
     params.delete("genero");
     params.delete("edad");
     params.delete("exp");
@@ -142,7 +139,6 @@ const ProfileFilters = ({ onFilterChange }) => {
 
     router.push(`?${params.toString()}`);
 
-    // Reiniciar el estado interno de filtros
     setFilters({
       edad: [18, 60],
       genero: "",
@@ -180,7 +176,6 @@ const ProfileFilters = ({ onFilterChange }) => {
 
     const params = new URLSearchParams(searchParams.toString());
 
-    // Si hay valor, lo setea. Si no, lo borra.
     filters.genero
       ? params.set("genero", filters.genero)
       : params.delete("genero");
@@ -237,7 +232,6 @@ const ProfileFilters = ({ onFilterChange }) => {
           className={`${styles.filtersPanel} ${closing ? styles.closing : ""}`}
           ref={filtersRef}
         >
-          {/* Botón de cierre */}
           <button className={styles.closeButton} onClick={closeFilters}>
             <FaTimes />
           </button>
@@ -306,7 +300,6 @@ const ProfileFilters = ({ onFilterChange }) => {
               value={filters.edad[0]}
               onChange={(e) => {
                 const newMin = parseInt(e.target.value);
-                // Solo actualiza si es menor que la edad máxima
                 if (newMin < filters.edad[1]) {
                   handleChange("edad", [newMin, filters.edad[1]]);
                 }
@@ -321,7 +314,6 @@ const ProfileFilters = ({ onFilterChange }) => {
               value={filters.edad[1]}
               onChange={(e) => {
                 const newMax = parseInt(e.target.value);
-                // Solo actualiza si es mayor que la edad mínima
                 if (newMax > filters.edad[0]) {
                   handleChange("edad", [filters.edad[0], newMax]);
                 }
