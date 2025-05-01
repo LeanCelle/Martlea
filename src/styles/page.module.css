@@ -82,7 +82,6 @@
   justify-content: center;
   gap: 30px;
   align-items: center;
-  background-color: #48649c;
   padding: 40px 50px;
 }
 
@@ -95,8 +94,46 @@
 
 .graphicContainer .textGraphic p {
   font-size: 16px;
-  color: #ecf0f1;
+  color: #555;
 }
+
+.modernList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #333;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.circle {
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  background-color: #48649c;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.content strong {
+  color: #48649c;
+}
+
+
 
 
 .graphic {
@@ -403,6 +440,13 @@
     height: 125px;
   }
 
+  .circle {
+    font-size: 14px;
+  }
+  
+  .content {
+    font-size: 14px;
+  }
   .fotoContainer h3 {
     font-size: 20px;
   }

@@ -98,23 +98,40 @@ export default function Home() {
             />
           </div>
           <div className={styles.textGraphic}>
-            <p>
-              <b>Plataformas:</b> Conectamos talento y empresas a través de una
-              plataforma innovadora que simplifica la búsqueda y el
-              reclutamiento.<br></br>
-              <br></br>
-              <b>Identificación:</b> Facilitamos la identificación del candidato
-              ideal mediante un sistema eficiente que resalta habilidades y
-              experiencia.<br></br>
-              <br></br>
-              <b>Estrategia:</b> Optimizamos el proceso de contratación con una
-              estrategia ágil y efectiva, adaptada a las necesidades del
-              mercado.<br></br>
-              <br></br>
-              <b>Oportunidades:</b> Abrimos las puertas a nuevas oportunidades,
-              permitiendo que empresas y profesionales encuentren su mejor
-              camino al éxito.
-            </p>
+            <div class={styles.modernList}>
+              <div class={styles.item}>
+                <div class={styles.circle}>1</div>
+                <div class={styles.content}>
+                  <strong>Plataformas:</strong> Conectamos talento y empresas a
+                  través de una plataforma innovadora que simplifica la búsqueda
+                  y el reclutamiento.
+                </div>
+              </div>
+              <div class={styles.item}>
+                <div class={styles.circle}>2</div>
+                <div class={styles.content}>
+                  <strong>Identificación:</strong> Facilitamos la identificación
+                  del candidato ideal mediante un sistema eficiente que resalta
+                  habilidades y experiencia.
+                </div>
+              </div>
+              <div class={styles.item}>
+                <div class={styles.circle}>3</div>
+                <div class={styles.content}>
+                  <strong>Estrategia:</strong> Optimizamos el proceso de
+                  contratación con una estrategia ágil y efectiva, adaptada a
+                  las necesidades del mercado.
+                </div>
+              </div>
+              <div class={styles.item}>
+                <div class={styles.circle}>4</div>
+                <div class={styles.content}>
+                  <strong>Oportunidades:</strong> Abrimos las puertas a nuevas
+                  oportunidades, permitiendo que empresas y profesionales
+                  encuentren su mejor camino al éxito.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -182,7 +199,7 @@ export default function Home() {
           </div>
         )} */
 
-          /* 
+/* 
 
                       <CircularText
               text="CONEXIÓN*OPORTUNIDAD*TALENTO*"
