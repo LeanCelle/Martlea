@@ -10,11 +10,12 @@ import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import profiles from "@/data/proofProfiles";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import CircularText from "@/components/CircularText";
 
 export default function Home() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -98,26 +99,24 @@ export default function Home() {
           </div>
           <div className={styles.textGraphic}>
             <p>
-              1️⃣ <b>Plataformas:</b> Conectamos talento y empresas a través de
-              una plataforma innovadora que simplifica la búsqueda y el
+              <b>Plataformas:</b> Conectamos talento y empresas a través de una
+              plataforma innovadora que simplifica la búsqueda y el
               reclutamiento.<br></br>
               <br></br>
-              2️⃣ <b>Identificación:</b> Facilitamos la identificación del
-              candidato ideal mediante un sistema eficiente que resalta
-              habilidades y experiencia.<br></br>
+              <b>Identificación:</b> Facilitamos la identificación del candidato
+              ideal mediante un sistema eficiente que resalta habilidades y
+              experiencia.<br></br>
               <br></br>
-              3️⃣ <b>Estrategia:</b> Optimizamos el proceso de contratación con
-              una estrategia ágil y efectiva, adaptada a las necesidades del
+              <b>Estrategia:</b> Optimizamos el proceso de contratación con una
+              estrategia ágil y efectiva, adaptada a las necesidades del
               mercado.<br></br>
               <br></br>
-              4️⃣ <b>Oportunidades:</b> Abrimos las puertas a nuevas
-              oportunidades, permitiendo que empresas y profesionales encuentren
-              su mejor camino al éxito.
+              <b>Oportunidades:</b> Abrimos las puertas a nuevas oportunidades,
+              permitiendo que empresas y profesionales encuentren su mejor
+              camino al éxito.
             </p>
           </div>
         </div>
-
-      
 
         <div className={styles.carouselWrapper}>
           <Swiper
@@ -159,7 +158,8 @@ export default function Home() {
                         <strong>Habilidades:</strong> {profile.skills}
                       </p>
                       <p>
-                        <strong>Años de experiencia:</strong> {profile.experience}
+                        <strong>Años de experiencia:</strong>{" "}
+                        {profile.experience}
                       </p>
                     </div>
                   </div>
@@ -181,3 +181,11 @@ export default function Home() {
             </p>
           </div>
         )} */
+
+          /* 
+
+                      <CircularText
+              text="CONEXIÓN*OPORTUNIDAD*TALENTO*"
+              onHover="speedUp"
+              spinDuration={20}
+            />*/
