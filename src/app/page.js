@@ -98,34 +98,34 @@ export default function Home() {
             />
           </div>
           <div className={styles.textGraphic}>
-            <div class={styles.modernList}>
-              <div class={styles.item}>
-                <div class={styles.circle}>1</div>
-                <div class={styles.content}>
+            <div className={styles.modernList}>
+              <div className={styles.item}>
+                <div className={styles.circle}>1</div>
+                <div className={styles.content}>
                   <strong>Plataformas:</strong> Conectamos talento y empresas a
                   través de una plataforma innovadora que simplifica la búsqueda
                   y el reclutamiento.
                 </div>
               </div>
-              <div class={styles.item}>
-                <div class={styles.circle}>2</div>
-                <div class={styles.content}>
+              <div className={styles.item}>
+                <div className={styles.circle}>2</div>
+                <div className={styles.content}>
                   <strong>Identificación:</strong> Facilitamos la identificación
                   del candidato ideal mediante un sistema eficiente que resalta
                   habilidades y experiencia.
                 </div>
               </div>
-              <div class={styles.item}>
-                <div class={styles.circle}>3</div>
-                <div class={styles.content}>
+              <div className={styles.item}>
+                <div className={styles.circle}>3</div>
+                <div className={styles.content}>
                   <strong>Estrategia:</strong> Optimizamos el proceso de
                   contratación con una estrategia ágil y efectiva, adaptada a
                   las necesidades del mercado.
                 </div>
               </div>
-              <div class={styles.item}>
-                <div class={styles.circle}>4</div>
-                <div class={styles.content}>
+              <div className={styles.item}>
+                <div className={styles.circle}>4</div>
+                <div className={styles.content}>
                   <strong>Oportunidades:</strong> Abrimos las puertas a nuevas
                   oportunidades, permitiendo que empresas y profesionales
                   encuentren su mejor camino al éxito.
