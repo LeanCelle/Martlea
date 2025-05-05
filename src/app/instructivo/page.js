@@ -92,21 +92,23 @@ export default function InstructionSection() {
   return (
     <section className={styles.instructions}>
       {!role ? (
-        <div className={styles.roleSelector}>
+        <>
           <h1 className={styles.sectionTitle}>¿Cómo funciona?</h1>
-          <button
-            onClick={() => handleSelect("candidate")}
-            className={styles.candidateButton}
-          >
-            Estoy buscando trabajo
-          </button>
-          <button
-            onClick={() => handleSelect("recruiter")}
-            className={styles.recruiterButton}
-          >
-            Soy una empresa o reclutador
-          </button>
-        </div>
+          <div className={styles.roleSelector}>
+            <button
+              onClick={() => handleSelect("candidate")}
+              className={styles.candidateButton}
+            >
+              Estoy buscando trabajo
+            </button>
+            <button
+              onClick={() => handleSelect("recruiter")}
+              className={styles.recruiterButton}
+            >
+              Soy una empresa o reclutador
+            </button>
+          </div>
+        </>
       ) : (
         <div className={styles.selectedSteps}>
           <h3 className={styles.roleTitle}>
