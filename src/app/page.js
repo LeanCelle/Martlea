@@ -82,7 +82,7 @@ export default function Home() {
             tu equipo?
           </h3>
           <p style={{ textAlign: "center" }}>
-            <b>Encontrá</b> al <b>candidato</b> ideal y hacé <b>crecer</b> tu{" "}
+            Encontrá al <b>candidato ideal</b> y hacé crecer tu{" "}
             <b>negocio, empresa o emprendimiento</b> con los mejores empleados.
           </p>
         </div>

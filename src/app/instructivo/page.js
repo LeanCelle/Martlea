@@ -91,10 +91,9 @@ export default function InstructionSection() {
 
   return (
     <section className={styles.instructions}>
-      <h1 className={styles.sectionTitle}>¿Cómo funciona?</h1>
-
       {!role ? (
         <div className={styles.roleSelector}>
+          <h1 className={styles.sectionTitle}>¿Cómo funciona?</h1>
           <button
             onClick={() => handleSelect("candidate")}
             className={styles.candidateButton}

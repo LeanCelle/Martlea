@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0rem 2rem;/* fondo profesional degradado */
+  padding: 0rem 2rem;
   color: #ffffff;
 }
 
@@ -52,14 +52,15 @@
 .createProfile {
   color: #48649c;
   background-color: white;
+  text-decoration: underline #48649c;
   border: none;
   font-size: 18px;
   cursor: pointer;
 }
 
 .createProfile:hover {
-  text-decoration: underline;
-  text-decoration-color: #48649c;
+  color: #508cfc;
+  text-decoration: underline #508cfc;
 }
 
 
