@@ -385,10 +385,6 @@
         padding: 20px;
         border-left: none;
         font-size: 14px;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        word-break: break-all;
-        white-space: normal;
       }
 
       .othersContainer {
@@ -405,6 +401,12 @@
 
       .contactContainer label {
         font-size: 14px;
+      }
+      .contactContainer a {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
       }
 
       .contactContainer p {
@@ -445,6 +447,13 @@
       .othersContainer p {
         font-size: 14px;
       }
+      .othersContainer a {
+        font-size: 14px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-all;
+        white-space: normal;
+      }
       
 
 
@@ -480,8 +489,13 @@
       }
 
       .labelNameContainer {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+      }
+      .labelNameContainer .labelContainer {
+        justify-content: center;
       }
     }
